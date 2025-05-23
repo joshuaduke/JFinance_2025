@@ -1,33 +1,86 @@
-import React, { useEffect, useState } from "react";
-import Transaction from "./Transaction";
+import {
+	getMonth,
+	format,
+	parse,
+	startOfMonth,
+	endOfMonth,
+	parseISO,
+	startOfYear,
+	endOfYear,
+} from "date-fns";
 
-const Transactions = () => {
-	const [data, setdata] = useState(transactionData);
-	const [filteredDates, setFilteredDates] = useState([]);
+export function formatTransactionDate(strDate) {
+	//conver ISO 8610 to mm/dd/yyyy
+	return format(parseISO(strDate), "PP");
+}
 
-	useEffect(() => {
-		let dateArray = transactionData.map((value) => value.date);
+export function getFormattedCurrentDate() {
+	const newDate = new Date();
+	const formattedDate = format(newDate, "MM/dd/yyyy");
+	return formattedDate;
+}
 
-		let a1 = dateArray.filter(
-			(item, index) => dateArray.indexOf(item) === index
-		);
+export function getTransactionsByPeriod(period) {
+	console.log("Period", period);
 
-		setFilteredDates(a1);
-	}, []);
+	switch (period) {
+		case "week":
+			break;
+		case "month":
+			return getTransactionsByMonth();
+			break;
+		case "year":
+			return getTransactionsByYear();
+			break;
+		case "all":
+			return getAllTransactions();
+			break;
+		default:
+			break;
+	}
+}
 
-	return (
-		<div className="col-span-3 row-span-12 rounded-l-2xl bg-white shadow-md overflow-auto">
-			{/** Component for transaction day of month */}
+function getTransactionsByMonth() {
+	const currentDate = new Date();
+	// const monthStartDate = format(startOfMonth(currentDate), "MM/dd/yyyy");
+	// const monthEndDate = format(endOfMonth(currentDate), "dd/MM/yyyy");
+	const monthStartDate = startOfMonth(new Date(currentDate));
+	const monthEndDate = endOfMonth(new Date(currentDate));
 
-			{/* component for transaction */}
-			{filteredDates.map((date, index) => (
-				<Transaction key={index} date={date} data={data} />
-			))}
-		</div>
-	);
-};
+	let monthTransactions = transactionData.filter((item) => {
+		let formattedDate = new Date(parseISO(item.date));
 
-export default Transactions;
+		if (formattedDate >= monthStartDate && formattedDate <= monthEndDate) {
+			return formattedDate;
+		}
+	});
+
+	return monthTransactions;
+}
+
+function getTransactionsByYear() {
+	const currentDate = new Date();
+	// const monthStartDate = format(startOfMonth(currentDate), "MM/dd/yyyy");
+	// const monthEndDate = format(endOfMonth(currentDate), "dd/MM/yyyy");
+	const yearStartDate = startOfYear(new Date(currentDate));
+	const yearEndDate = endOfYear(new Date(currentDate));
+
+	let yearTransactions = transactionData.filter((item) => {
+		let formattedDate = new Date(parseISO(item.date));
+
+		if (formattedDate >= yearStartDate && formattedDate <= yearEndDate) {
+			return formattedDate;
+		}
+	});
+
+	console.log("Year Transactions", yearTransactions);
+
+	return yearTransactions;
+}
+
+function getAllTransactions() {
+	return transactionData;
+}
 
 const transactionData = [
 	{

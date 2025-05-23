@@ -1,26 +1,31 @@
 import React from "react";
 
+import CategoryIcon from "../../components/CategoryIcon";
+import { formatCurrency } from "../../helpers/currency";
+
 const TransactionItem = ({ data }) => {
 	return data.map((element, index) => (
 		//key needs to be changed to ID pulled from DB
-		<div key={index} className="flex justify-between">
-			<div className="">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="20"
-					height="20"
-					viewBox="0 0 24 24"
-					className="bg-red-500 rounded-md"
-				>
-					<path d="M18.25 3.25a.75.75 0 0 1 .743.648L19 4v16a.75.75 0 0 1-1.493.102L17.5 20v-5h-2.25a.75.75 0 0 1-.743-.648l-.007-.102V7a3.75 3.75 0 0 1 3.75-3.75Zm-6 0a.75.75 0 0 1 .743.648L13 4v4c0 1.953-1.4 3.578-3.25 3.93V20a.75.75 0 0 1-1.493.102L8.25 20v-8.07a4.002 4.002 0 0 1-3.245-3.722L5 8V4a.75.75 0 0 1 1.493-.102L6.5 4v4c0 1.12.736 2.067 1.75 2.386V4a.75.75 0 0 1 1.493-.102L9.75 4v6.385a2.502 2.502 0 0 0 1.743-2.2L11.5 8V4a.75.75 0 0 1 .75-.75ZM17.5 13.5V4.878a2.252 2.252 0 0 0-1.494 1.95L16 7v6.5h1.5V4.878V13.5Z" />
-				</svg>
-				<div>
-					<p>Food</p>
-					<p>{element.ACCOUNT}</p>
+		<div key={index} className=" border-b py-1 px-2 border-gray-300">
+			<div className="flex justify-between">
+				<div className="flex pr-2">
+					<CategoryIcon category={element.category} />
+					<div className="px-2">
+						<p className="text-sm">
+							{element.description.substring(0, 15)}
+						</p>
+						<p className="text-xs self-center">
+							{element.account.toLowerCase()}
+						</p>
+					</div>
 				</div>
-			</div>
-			<div>
-				<p className="">$5000</p>
+
+				<p
+					className="self-center"
+					style={{ color: element.cost < 0 ? "#CC0000" : "#108B10" }}
+				>
+					{formatCurrency(element.cost)}
+				</p>
 			</div>
 		</div>
 	));
