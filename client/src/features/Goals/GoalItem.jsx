@@ -1,33 +1,61 @@
-import React, { useEffect, useState } from "react";
-import Transaction from "./Transaction";
+import React from "react";
+import ProgressBar from "../../components/ProgressBar";
+import { formatTransactionDate } from "../../helpers/dates";
+import { formatCurrency } from "../../helpers/currency";
 
-const Transactions = () => {
-	const [data, setdata] = useState(transactionData);
-	const [filteredDates, setFilteredDates] = useState([]);
+const GoalItem = ({ data }) => {
+	let percentage = 0;
+	// store subcategory type
+	// filter transactions for that type and store in new arr
+	let arrSubCategoryItems = transactionData.filter(
+		(item) => item.subCategory === data.subCategory
+	);
 
-	useEffect(() => {
-		let dateArray = transactionData.map((value) => value.date);
+	// use reduce method to sum all transactions from that type
+	// store in variable
+	let sumSubCategoryItems = arrSubCategoryItems.reduce(
+		(acc, curr) => acc + curr.cost,
+		0
+	);
 
-		let a1 = dateArray.filter(
-			(item, index) => dateArray.indexOf(item) === index
-		);
-
-		setFilteredDates(a1.reverse());
-	}, []);
+	//calculate percentage
+	// goal amount / sumOfSubCategoryType
+	percentage = (sumSubCategoryItems / data.goalAmount) * -100;
+	console.log("Percentage", percentage);
 
 	return (
-		<div className="col-span-3 row-span-12 rounded-l-2xl bg-white shadow-lg overflow-auto">
-			{/** Component for transaction day of month */}
+		<div className="my-1">
+			<div
+				className="flex justify-between 
+"
+			>
+				<div className="flex items-center">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+					>
+						<path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91c4.59-1.15 8-5.86 8-10.91V5l-8-3zm3.5 12.09l-1.41 1.41L12 13.42L9.91 15.5L8.5 14.09L10.59 12L8.5 9.91L9.91 8.5L12 10.59l2.09-2.09l1.41 1.41L13.42 12l2.08 2.09z"></path>
+					</svg>
+					<div>
+						<p className="text-xs font-bold">{data.goalName}</p>
+						<p className="font-thin" style={{ fontSize: "10px" }}>
+							{formatTransactionDate(data.startDate)}
+						</p>
+					</div>
+				</div>
 
-			{/* component for transaction */}
-			{filteredDates.map((date, index) => (
-				<Transaction key={index} date={date} data={data} />
-			))}
+				<div className=" self-center">
+					<p className="text-sm">{formatCurrency(data.goalAmount)}</p>
+				</div>
+			</div>
+			<ProgressBar percentage={percentage} />
 		</div>
 	);
 };
 
-export default Transactions;
+export default GoalItem;
 
 const transactionData = [
 	{

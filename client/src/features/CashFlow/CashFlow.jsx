@@ -46,7 +46,7 @@ const CashFlow = ({ type }) => {
 
 	return (
 		<div
-			className="border-1 rounded-lg flex flex-col justify-between shadow-md"
+			className="border-1 rounded-lg flex flex-col justify-between shadow-lg"
 			style={{ backgroundColor: bkColor, borderColor: bkColor }}
 		>
 			{/* <div>

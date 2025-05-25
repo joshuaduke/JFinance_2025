@@ -15,7 +15,7 @@ function App() {
 
 	return (
 		<AppContextProvider value={{ period, setperiod }}>
-			<main className="grid grid-cols-12 grid-rows-12 gap-4 h-screen">
+			<main className="grid grid-cols-12 grid-rows-12 gap-4 h-screen mx-auto lg:w-full xl:w-10/12 2xl:w-8/12">
 				<Header />
 				<NavMenu />
 				<Overview />
@@ -24,6 +24,7 @@ function App() {
 				<Expenses />
 				<Networth />
 				<Goals />
+				{/* <Expenses /> */}
 			</main>
 		</AppContextProvider>
 	);
