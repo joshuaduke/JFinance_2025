@@ -6,6 +6,7 @@ import Actions from "./features/Actions/Actions";
 import Transactions from "./features/Transactions/Index";
 import Expenses from "./features/ExpensesGraph/Expenses";
 import Networth from "./features/Networth/Networth";
+import Budget from "./features/Budget/Budget";
 import Goals from "./features/Goals/Goals";
 import { AppContextProvider } from "./components/AppContext";
 import Overview from "./features/Overview/Overview";
@@ -22,7 +23,7 @@ function App() {
 				<Actions />
 				<Transactions />
 				<Expenses />
-				<Networth />
+				<Budget />
 				<Goals />
 				{/* <Expenses /> */}
 			</main>

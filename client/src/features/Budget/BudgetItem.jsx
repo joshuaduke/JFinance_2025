@@ -1,15 +1,15 @@
 import React from "react";
-import ProgressBar from "../../components/ProgressBar";
-import { formatTransactionDate } from "../../helpers/dates";
 import { formatCurrency } from "../../helpers/currency";
+import ProgressBar from "../../components/ProgressBar";
 
-const GoalItem = ({ data }) => {
+const BudgetItem = ({ data }) => {
 	let percentage = 0;
 	// store subcategory type
 	// filter transactions for that type and store in new arr
 	let arrSubCategoryItems = transactionData.filter(
-		(item) => item.subCategory === data.subCategory
+		(item) => item.category === data.category
 	);
+	console.log(arrSubCategoryItems);
 
 	// use reduce method to sum all transactions from that type
 	// store in variable
@@ -20,8 +20,8 @@ const GoalItem = ({ data }) => {
 
 	//calculate percentage
 	// goal amount / sumOfSubCategoryType
-	percentage = (sumSubCategoryItems / data.goalAmount) * -100;
-
+	percentage = (sumSubCategoryItems / data.budgetAmount) * -100;
+	console.log("Percentage", percentage);
 	return (
 		<div className="my-1">
 			<div
@@ -38,15 +38,17 @@ const GoalItem = ({ data }) => {
 						<path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91c4.59-1.15 8-5.86 8-10.91V5l-8-3zm3.5 12.09l-1.41 1.41L12 13.42L9.91 15.5L8.5 14.09L10.59 12L8.5 9.91L9.91 8.5L12 10.59l2.09-2.09l1.41 1.41L13.42 12l2.08 2.09z"></path>
 					</svg>
 					<div>
-						<p className="text-xs font-bold">{data.goalName}</p>
-						<p className="font-thin" style={{ fontSize: "10px" }}>
+						<p className="text-xs font-bold">{data.budgetName}</p>
+						{/* <p className="font-thin" style={{ fontSize: "10px" }}>
 							{formatTransactionDate(data.startDate)}
-						</p>
+						</p> */}
 					</div>
 				</div>
 
 				<div className=" self-center">
-					<p className="text-sm">{formatCurrency(data.goalAmount)}</p>
+					<p className="text-sm">
+						{formatCurrency(data.budgetAmount)}
+					</p>
 				</div>
 			</div>
 			<ProgressBar percentage={percentage} />
@@ -54,7 +56,7 @@ const GoalItem = ({ data }) => {
 	);
 };
 
-export default GoalItem;
+export default BudgetItem;
 
 const transactionData = [
 	{
