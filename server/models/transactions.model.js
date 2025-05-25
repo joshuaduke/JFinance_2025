@@ -1,14 +1,41 @@
 import mongoose from "mongoose";
 
-const productSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: [true, "Please enter transaction name"],
-    },
-    category: {
-        type: String,
-        require: true,
-    },
-    date: {type: Date, default: Date.now},
+const TransactionSchema = mongoose.Schema(
+	{
+		name: {
+			type: String,
+			required: [true, "Please enter transaction name"],
+		},
+		description: {
+			type: String,
+		},
+		category: {
+			type: String,
+			require: true,
+		},
+		subCategory: {
+			type: String,
+			require: true,
+		},
+		cost: {
+			type: Number,
+			require: true,
+			default: 0,
+		},
+		importance: {
+			type: String,
+		},
+		account: {
+			type: String,
+			required: true,
+		},
+		date: {
+			type: Date,
+			default: Date.now,
+			required: true,
+		},
+	},
+	{ timestamps: true }
+);
 
-})
+const Transaction = mongoose.model("Transaction", TransactionSchema);

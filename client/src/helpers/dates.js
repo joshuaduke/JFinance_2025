@@ -10,7 +10,7 @@ import {
 } from "date-fns";
 
 export function formatTransactionDate(strDate) {
-	//conver ISO 8610 to mm/dd/yyyy
+	//conver ISO 8610 to Apr 1, YYYY
 	return format(parseISO(strDate), "PP");
 }
 
