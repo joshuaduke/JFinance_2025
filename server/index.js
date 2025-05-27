@@ -1,17 +1,20 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-console.log(process.env);
-
+const Transaction = require("./models/transactions.model.js");
+const transactionRoute = require("./routes/transaction.route.js");
 const app = express();
 const port = 3000;
 
+//middleware to parse body to json
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+//routes
+app.use("/api/transactions", transactionRoute);
+
 app.get("/", (req, res) => {
 	res.send("Hello World!");
-});
-
-app.post("/api/transactions", (req, res) => {
-	res.send("Data Received");
 });
 
 mongoose
@@ -25,5 +28,5 @@ mongoose
 		});
 	})
 	.catch(() => {
-		console.log("connection faile");
+		console.log("connection failed");
 	});
