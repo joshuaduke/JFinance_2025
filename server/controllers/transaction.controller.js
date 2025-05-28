@@ -22,6 +22,8 @@ const getTransactionById = async (req, res) => {
 
 const createTransaction = async (req, res) => {
 	try {
+		console.log(req.body);
+
 		const transaction = await Transaction.create(req.body);
 		res.status(200).json(transaction);
 	} catch (error) {

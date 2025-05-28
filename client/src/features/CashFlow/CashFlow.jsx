@@ -6,11 +6,11 @@ import { getTransactionsByPeriod } from "../../helpers/dates";
 import { getMonth, format, parse, startOfMonth, endOfMonth } from "date-fns";
 
 const CashFlow = ({ type }) => {
-	const { period, setPeriod } = useContext(AppContext);
+	// const { period, setPeriod } = useContext(AppContext);
 	let bkColor = "";
 	let bdColor = "";
 	const [periodData, setperiodData] = useState(
-		getTransactionsByPeriod(period)
+		getTransactionsByPeriod("all")
 	);
 	// const [cashFlowAmount, setcashFlowAmount] = useState(0);
 

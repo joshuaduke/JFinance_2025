@@ -12,7 +12,7 @@ const TransactionItem = ({ data }) => {
 					<CategoryIcon category={element.category} />
 					<div className="px-2">
 						<p className="text-sm">
-							{element.description.substring(0, 15)}
+							{element.name.substring(0, 15)}
 						</p>
 						<p className="text-xs self-center">
 							{element.account.toLowerCase()}

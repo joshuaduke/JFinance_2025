@@ -1,17 +1,22 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const Transaction = require("./models/transactions.model.js");
 const transactionRoute = require("./routes/transaction.route.js");
+const goalRoute = require("./routes/goal.route.js");
+const budgetRoute = require("./routes/budget.route.js");
+const cors = require("cors");
 const app = express();
 const port = 3000;
 
 //middleware to parse body to json
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 //routes
 app.use("/api/transactions", transactionRoute);
+app.use("/api/goals", goalRoute);
+app.use("/api/budgets", budgetRoute);
 
 app.get("/", (req, res) => {
 	res.send("Hello World!");

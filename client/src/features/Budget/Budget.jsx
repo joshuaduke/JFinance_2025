@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BudgetItem from "./BudgetItem";
 
 const Budget = () => {
+	const [budgets, setBudgets] = useState([]);
+
+	useEffect(() => {
+		const URL = "http://localhost:3000/api/budgets";
+		const response = fetch(URL)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log("Response", data);
+				setBudgets(data);
+			});
+	}, []);
+
 	return (
 		<div className="col-span-3 row-span-3 shadow-lg rounded-2xl overflow-auto pt-2 pb-4 px-4 bg-white">
 			<h3>My Budget</h3>
@@ -11,7 +23,7 @@ const Budget = () => {
 				style={{ backgroundColor: "#e9e9e9" }}
 			>
 				{" "}
-				{budgetData.map((data) => (
+				{budgets.map((data) => (
 					<BudgetItem data={data} />
 				))}
 			</div>
@@ -23,29 +35,29 @@ export default Budget;
 
 const budgetData = [
 	{
-		budgetName: "Entertainment",
-		category: "FUN",
-		budgetAmount: 200,
+		name: "Entertainment and FOOD",
+		category: ["FUN", "FOOD"],
+		budgetAmount: 350,
 		description: "",
 		wallets: "",
 	},
 	{
-		budgetName: "Bills",
-		category: "BILLS",
+		name: "Bills",
+		category: ["BILLS"],
 		budgetAmount: 250,
 		description: "",
 		wallets: "",
 	},
 	{
-		budgetName: "Food and Dining out",
-		category: "FOOD",
+		name: "Subscription Services",
+		category: ["SUBSCRIPTION"],
 		budgetAmount: 150,
 		description: "",
 		wallets: "",
 	},
 	{
-		budgetName: "Groceries",
-		category: "GROCERIES",
+		name: "Groceries",
+		category: ["GROCERIES"],
 		budgetAmount: 150,
 		description: "",
 		wallets: "",
