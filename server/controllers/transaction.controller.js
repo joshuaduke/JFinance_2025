@@ -2,8 +2,31 @@ const Transaction = require("../models/transactions.model");
 
 const getTransactions = async (req, res) => {
 	try {
-		const transactions = await Transaction.find({});
-		res.status(200).json(transactions);
+		if (req.params.startDate) {
+			console.log("Params triggered", req.params.startDate);
+			const startDate = req.params.startDate;
+			const endDate = req.params.endDate;
+			//need to convert to ISO 8601 since the data I used from my google sheets file uses ISO 8601 date formats
+			const transactions = await Transaction.find({
+				date: {
+					$gte: new Date(startDate).toISOString(),
+					$lte: new Date(endDate).toISOString(),
+				},
+			});
+
+			//sort transactions by date from most recent
+			let sortedTransactions = transactions.sort(
+				(a, b) => new Date(a.date) - new Date(b.date)
+			);
+			res.status(200).json(sortedTransactions);
+		} else {
+			const transactions = await Transaction.find({});
+			let sortedTransactions = transactions.sort(
+				(a, b) => new Date(a.date) - new Date(b.date)
+			);
+
+			res.status(200).json(sortedTransactions);
+		}
 	} catch (error) {
 		res.status(500).json({ message: error });
 	}

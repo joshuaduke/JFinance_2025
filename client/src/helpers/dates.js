@@ -1,5 +1,6 @@
 import {
 	getMonth,
+	getYear,
 	format,
 	parse,
 	startOfMonth,
@@ -7,6 +8,8 @@ import {
 	parseISO,
 	startOfYear,
 	endOfYear,
+	startOfWeek,
+	endOfWeek,
 } from "date-fns";
 
 export function formatTransactionDate(strDate) {
@@ -21,23 +24,37 @@ export function getFormattedCurrentDate() {
 }
 
 export function getTransactionsByPeriod(period) {
+	const currentDate = new Date();
 	console.log("Period", period);
-
+	let periodDateObj = {
+		startDate: "",
+		endDate: "",
+		dateName: "",
+	};
 	switch (period) {
 		case "week":
+			periodDateObj.startDate = startOfWeek(currentDate);
+			periodDateObj.endDate = endOfWeek(currentDate);
+			periodDateObj.dateName = format(currentDate, "PP");
 			break;
 		case "month":
-			return getTransactionsByMonth();
+			periodDateObj.startDate = startOfMonth(currentDate);
+			periodDateObj.endDate = endOfMonth(currentDate);
+			periodDateObj.dateName = format(currentDate, "PPP");
 			break;
 		case "year":
-			return getTransactionsByYear();
+			periodDateObj.startDate = startOfYear(currentDate);
+			periodDateObj.endDate = endOfYear(currentDate);
+			periodDateObj.dateName = getYear(currentDate);
 			break;
 		case "all":
-			return getAllTransactions();
+			periodDateObj.dateName = "All Time";
 			break;
 		default:
 			break;
 	}
+
+	return periodDateObj;
 }
 
 function getTransactionsByMonth() {

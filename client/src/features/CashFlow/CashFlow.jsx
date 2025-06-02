@@ -6,12 +6,12 @@ import { getTransactionsByPeriod } from "../../helpers/dates";
 import { getMonth, format, parse, startOfMonth, endOfMonth } from "date-fns";
 
 const CashFlow = ({ type }) => {
-	// const { period, setPeriod } = useContext(AppContext);
+	const { transactions, setTransactions } = useContext(AppContext);
 	let bkColor = "";
 	let bdColor = "";
-	const [periodData, setperiodData] = useState(
-		getTransactionsByPeriod("all")
-	);
+	// const [periodData, setperiodData] = useState(
+	// 	getTransactionsByPeriod("all")
+	// );
 	// const [cashFlowAmount, setcashFlowAmount] = useState(0);
 
 	function calculateCashFlow(data) {
@@ -36,13 +36,13 @@ const CashFlow = ({ type }) => {
 		return result;
 	}
 
-	let cashflowAmount = calculateCashFlow(periodData);
+	let cashflowAmount = calculateCashFlow(transactions);
 
-	const handleChange = (event) => {
-		setPeriod(event.target.value);
-		console.log("new Period", period);
-		setperiodData(getTransactionsByPeriod(period));
-	};
+	// const handleChange = (event) => {
+	// 	setPeriod(event.target.value);
+	// 	console.log("new Period", period);
+	// 	setperiodData(getTransactionsByPeriod(period));
+	// };
 
 	return (
 		<div

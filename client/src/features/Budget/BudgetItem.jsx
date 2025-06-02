@@ -4,24 +4,17 @@ import ProgressBar from "../../components/ProgressBar";
 import { AppContext } from "../../components/AppContext";
 import { useContext } from "react";
 
-const BudgetItem = ({ data }) => {
-	const {transactions, setTransactions} = useContext(AppContext);
-	console.log("Transactions", transactions);
-	console.log("Data", data);
+
+// budget needs to be based on monthly transactions
+const BudgetItem = ({ data, transactions }) => {
+	// const { transactions, setTransactions } = useContext(AppContext);
 	let percentage = 0;
 	// store subcategory type
 	// filter transactions for that type and store in new arr
-		// let arrSubCategoryItems = transactions.filter(
-		// (item) => item.category === data.category)
-	
+
 	let arrSubCategoryItems = transactions.filter(
 		(item) => data.category.indexOf(item.category) != -1
 	);
-
-		// let arrSubCategoryItems = transactions.filter(
-		// (item) => data.category.findIndex(item.category) != -1 );
-
-	console.log(arrSubCategoryItems);
 
 	// use reduce method to sum all transactions from that type
 	// store in variable
@@ -33,7 +26,7 @@ const BudgetItem = ({ data }) => {
 	//calculate percentage
 	// goal amount / sumOfSubCategoryType
 	percentage = (sumSubCategoryItems / data.budgetAmount) * -100;
-	console.log("Percentage", percentage);
+
 	return (
 		<div className="my-1">
 			<div

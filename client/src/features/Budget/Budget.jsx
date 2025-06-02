@@ -1,18 +1,46 @@
 import React, { useEffect, useState } from "react";
 import BudgetItem from "./BudgetItem";
+import { getTransactionsByPeriod } from "../../helpers/dates";
 
 const Budget = () => {
 	const [budgets, setBudgets] = useState([]);
+	const [transactionsByMonth, setTransactionsByMonth] = useState([]);
+
+	// useEffect(() => {
+	// 	const URL = "http://localhost:3000/api/budgets";
+	// 	const response = fetch(URL)
+	// 		.then((response) => response.json())
+	// 		.then((data) => {
+	// 			//console.log("Response", data);
+	// 			setBudgets(data);
+	// 		});
+	// }, []);
 
 	useEffect(() => {
+		let { startDate, endDate, dateName } = getTransactionsByPeriod("month");
 		const URL = "http://localhost:3000/api/budgets";
-		const response = fetch(URL)
-			.then((response) => response.json())
-			.then((data) => {
-				console.log("Response", data);
-				setBudgets(data);
-			});
+		const transactionURL = `http://localhost:3000/api/transactions/${startDate}/${endDate}`;
+
+		async function fetchData() {
+			const [response1, response2] = await Promise.all([
+				fetch(URL),
+				fetch(transactionURL),
+			]);
+			const [data1, data2] = await Promise.all([
+				response1.json(),
+				response2.json(),
+			]);
+			console.log("Budget Data", data1);
+			console.log("Transactions Data", data2);
+			setBudgets(data1);
+			setTransactionsByMonth(data2);
+		}
+
+		fetchData();
 	}, []);
+
+	// console.log("Budget Data", budgets);
+	// console.log("Transactions Data", transactionsByMonth);
 
 	return (
 		<div className="col-span-3 row-span-3 shadow-lg rounded-2xl overflow-auto pt-2 pb-4 px-4 bg-white">
@@ -24,7 +52,10 @@ const Budget = () => {
 			>
 				{" "}
 				{budgets.map((data) => (
-					<BudgetItem data={data} />
+					<BudgetItem
+						data={data}
+						transactions={transactionsByMonth}
+					/>
 				))}
 			</div>
 		</div>

@@ -9,7 +9,7 @@ const Goals = () => {
 		const response = fetch(URL)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log("Response", data);
+				//console.log("Response", data);
 				setGoals(data);
 			});
 	}, []);
@@ -90,3 +90,5 @@ export default Goals;
 // 		subCategory: "EQ_APARTMENT",
 // 	},
 // ];
+
+

@@ -8,7 +8,9 @@ const {
 	deleteTransaction,
 } = require("../controllers/transaction.controller.js");
 
-router.get("/", getTransactions);
+// router.get("/", getTransactions);
+//optional parameters
+router.get("/{:startDate}{/:endDate}", getTransactions);
 
 router.get("/:id", getTransactionById);
 
