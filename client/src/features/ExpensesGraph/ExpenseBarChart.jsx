@@ -1959,22 +1959,32 @@ const ExpenseBarChart = ({transactions}) => {
     const values = transactionData.map(item => item.totalSum)
 
     const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                display: false
-            },
-            title: {
-                text: "This is a chart representing cost per category",
-                display: true,
-            }
-        }
-        // parsing: 
-        // {
-        //     xAxisKey: 'category',
-        //     yAxisKey: 'totalSum'
-        // },
-    }   
+		responsive: true,
+		plugins: {
+			legend: {
+				display: false,
+			},
+			title: {
+				text: "This is a chart representing cost per category",
+				display: true,
+			},
+		},
+		scales: {
+			x: [
+				{
+					ticks: {
+						maxRotation: 90,
+						fontSize: 10,
+					},
+				},
+			],
+		},
+		// parsing:
+		// {
+		//     xAxisKey: 'category',
+		//     yAxisKey: 'totalSum'
+		// },
+	};   
     const data = {
         labels: labels,
         datasets: [

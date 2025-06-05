@@ -15,7 +15,7 @@ const Goals = () => {
 	}, []);
 
 	return (
-		<div className="col-span-4 row-span-3 shadow-lg rounded-2xl overflow-auto pt-2 pb-4 px-4 bg-white">
+		<div className="col-span-12 sm:col-span-4 sm:row-span-4 shadow-lg rounded-2xl overflow-auto pt-2 pb-4 px-4 bg-white">
 			<h3>My Goals</h3>
 
 			<div

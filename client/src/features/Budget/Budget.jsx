@@ -17,9 +17,10 @@ const Budget = () => {
 	// }, []);
 
 	useEffect(() => {
-		let { startDate, endDate, dateName } = getTransactionsByPeriod("month");
+		let { periodStartDate, periodEndDate, dateName } =
+			getTransactionsByPeriod("month");
 		const URL = "http://localhost:3000/api/budgets";
-		const transactionURL = `http://localhost:3000/api/transactions/${startDate}/${endDate}`;
+		const transactionURL = `http://localhost:3000/api/transactions/${periodStartDate}/${periodEndDate}`;
 
 		async function fetchData() {
 			const [response1, response2] = await Promise.all([
@@ -43,7 +44,7 @@ const Budget = () => {
 	// console.log("Transactions Data", transactionsByMonth);
 
 	return (
-		<div className="col-span-3 row-span-3 shadow-lg rounded-2xl overflow-auto pt-2 pb-4 px-4 bg-white">
+		<div className="col-span-12 sm:col-span-3 sm:row-span-4 shadow-lg rounded-2xl overflow-auto pt-2 pb-4 px-4 bg-white">
 			<h3>My Budget</h3>
 
 			<div

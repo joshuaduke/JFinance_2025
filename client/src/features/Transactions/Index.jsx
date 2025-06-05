@@ -21,7 +21,7 @@ const Transactions = () => {
 	//When using useContext within useEffect, it's important to consider the dependencies of the effect. If the context value is used within the effect, it should be included in the dependency array to ensure that the effect is re-run whenever the context value changes.
 
 	return (
-		<div className="col-span-3 row-span-12 rounded-l-2xl bg-white shadow-lg overflow-auto">
+		<div className="hidden sm:block sm:col-span-3 sm:row-span-12 rounded-l-2xl bg-white shadow-lg overflow-auto">
 			{/** Component for transaction day of month */}
 
 			{/* component for transaction */}

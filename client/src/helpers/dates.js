@@ -10,6 +10,12 @@ import {
 	endOfYear,
 	startOfWeek,
 	endOfWeek,
+	subMonths,
+	addMonths,
+	subYears,
+	subWeeks,
+	addWeeks,
+	addYears,
 } from "date-fns";
 
 export function formatTransactionDate(strDate) {
@@ -23,28 +29,38 @@ export function getFormattedCurrentDate() {
 	return formattedDate;
 }
 
-export function getTransactionsByPeriod(period) {
-	const currentDate = new Date();
-	console.log("Period", period);
+export function getTransactionsByPeriod(period, startDate, endDate) {
+	let currentDate = new Date();
+	if (startDate != null) {
+		currentDate = parseISO(startDate);
+	}
+
 	let periodDateObj = {
-		startDate: "",
-		endDate: "",
+		periodStartDate: "",
+		periodEndDate: "",
 		dateName: "",
 	};
 	switch (period) {
 		case "week":
-			periodDateObj.startDate = startOfWeek(currentDate);
-			periodDateObj.endDate = endOfWeek(currentDate);
+			periodDateObj.periodStartDate = startOfWeek(currentDate);
+			periodDateObj.periodEndDate = endOfWeek(currentDate);
 			periodDateObj.dateName = format(currentDate, "PP");
 			break;
 		case "month":
-			periodDateObj.startDate = startOfMonth(currentDate);
-			periodDateObj.endDate = endOfMonth(currentDate);
+			// keep original date and formatted date
+			periodDateObj.periodStartDate = format(
+				startOfMonth(currentDate),
+				"yyyy-MM-dd"
+			);
+			periodDateObj.periodEndDate = format(
+				endOfMonth(currentDate),
+				"yyyy-MM-dd"
+			);
 			periodDateObj.dateName = format(currentDate, "PPP");
 			break;
 		case "year":
-			periodDateObj.startDate = startOfYear(currentDate);
-			periodDateObj.endDate = endOfYear(currentDate);
+			periodDateObj.periodStartDate = startOfYear(currentDate);
+			periodDateObj.periodEndDate = endOfYear(currentDate);
 			periodDateObj.dateName = getYear(currentDate);
 			break;
 		case "all":
@@ -98,6 +114,80 @@ function getTransactionsByYear() {
 function getAllTransactions() {
 	return transactionData;
 }
+
+export function getPreviousPeriod(period, startDate, endDate) {
+	const newDate = parseISO(startDate);
+	// const newDate = new Date(startDate);
+
+	let newPeriodObj = {
+		newStart: "",
+		newEnd: "",
+	};
+
+	switch (period) {
+		case "week":
+			newPeriodObj.newStart = format(subWeeks(newDate, 1), "yyyy-MM-dd");
+			newPeriodObj.newEnd = format(subWeeks(newDate, 1), "yyyy-MM-dd");
+			break;
+		case "month":
+			// get current value of startdate and end date
+			// console.log("Start", start);
+			// subtract 1 month
+			// set new value of start date and end date
+			newPeriodObj.newStart = format(subMonths(newDate, 1), "yyyy-MM-dd");
+			newPeriodObj.newEnd = format(subMonths(newDate, 1), "yyyy-MM-dd");
+
+			break;
+		case "year":
+			newPeriodObj.newStart = format(subYears(newDate, 1), "yyyy-MM-dd");
+			newPeriodObj.newEnd = format(subYears(newDate, 1), "yyyy-MM-dd");
+			break;
+		default:
+			break;
+	}
+
+	return newPeriodObj;
+}
+
+export function getNextPeriod(period, startDate, endDate) {
+	const newDate = parseISO(startDate);
+	const currentDate = new Date();
+
+	if (currentDate == newDate) {
+		return false;
+	}
+	// const newDate = new Date(startDate);
+
+	let newPeriodObj = {
+		newStart: "",
+		newEnd: "",
+	};
+
+	switch (period) {
+		case "week":
+			newPeriodObj.newStart = format(addWeeks(newDate, 1), "yyyy-MM-dd");
+			newPeriodObj.newEnd = format(addWeeks(newDate, 1), "yyyy-MM-dd");
+			break;
+		case "month":
+			// get current value of startdate and end date
+			// console.log("Start", start);
+			// subtract 1 month
+			// set new value of start date and end date
+			newPeriodObj.newStart = format(addMonths(newDate, 1), "yyyy-MM-dd");
+			newPeriodObj.newEnd = format(addMonths(newDate, 1), "yyyy-MM-dd");
+
+			break;
+		case "year":
+			newPeriodObj.newStart = format(addYears(newDate, 1), "yyyy-MM-dd");
+			newPeriodObj.newEnd = format(addYears(newDate, 1), "yyyy-MM-dd");
+			break;
+		default:
+			break;
+	}
+
+	return newPeriodObj;
+}
+
 
 const transactionData = [
 	{

@@ -14,7 +14,7 @@ const Period = () => {
 	return (
 		<div className="text-center">
 			<h3>Period</h3>
-			<ul className="grid w-fit mx-auto gap-2 md:grid-cols-4">
+			<ul className="grid w-fit mx-auto gap-2 grid-cols-4">
 				<li>
 					<input
 						type="radio"
@@ -23,7 +23,7 @@ const Period = () => {
 						value="all"
 						className="hidden peer"
 						checked={period === "all"}
-                        onChange={handleChange}
+						onChange={handleChange}
 					/>
 					<label
 						htmlFor="all"
@@ -40,7 +40,7 @@ const Period = () => {
 						value="year"
 						className="hidden peer"
 						checked={period === "year"}
-                        onChange={handleChange}
+						onChange={handleChange}
 					/>
 					<label
 						htmlFor="year"
@@ -57,7 +57,7 @@ const Period = () => {
 						value="month"
 						className="hidden peer"
 						checked={period === "month"}
-                        onChange={handleChange}
+						onChange={handleChange}
 					/>
 					<label
 						htmlFor="month"
@@ -74,7 +74,7 @@ const Period = () => {
 						value="week"
 						className="hidden peer"
 						checked={period === "week"}
-                        onChange={handleChange}
+						onChange={handleChange}
 					/>
 					<label
 						htmlFor="week"
@@ -84,7 +84,6 @@ const Period = () => {
 					</label>
 				</li>
 			</ul>
-
 		</div>
 	);
 };

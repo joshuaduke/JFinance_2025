@@ -3,7 +3,7 @@ import CashFlow from "../CashFlow/CashFlow";
 
 const Overview = () => {
 	return (
-		<div className="col-span-5 row-span-2 grid grid-cols-3 gap-4">
+		<div className="col-span-12  grid grid-cols-3 gap-2 sm:col-span-5 sm:row-span-2">
 			<CashFlow type={"Cash Flow"} />
 			<CashFlow type={"Income"} />
 			<CashFlow type={"Expenses"} />

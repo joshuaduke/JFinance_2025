@@ -2,41 +2,53 @@ import React from "react";
 import { useEffect } from "react";
 import { createContext, useState } from "react";
 import { getTransactionsByPeriod } from "../helpers/dates";
+import { endOfMonth, startOfMonth } from "date-fns";
 
 export const AppContext = createContext(null);
 
 export const AppContextProvider = ({ children }) => {
-	const [period, setPeriod] = useState("all");
+	const [period, setPeriod] = useState("month");
 	const [transactions, setTransactions] = useState([]);
 	const [periodDateName, setPeriodDateName] = useState("");
+	const [startDate, setStartDate] = useState(null);
+	const [endDate, setEndDate] = useState(null);
 
-	// function to get current date as an object depending on the period
-	/**
-	 *
-	 * {
-	 * 	startDate: first Day of the month
-	 * 	endDet: last Day of the month
-	 * }
-	 *
-	 */
-	// let startDate = "2025-05-01";
-	// let endDate = "2025-05-31";
-
+	// this use effect only triggers when dependencies change
+	// using 2 use effects to prevent infinite loop that was occuring due to start date change
 	useEffect(() => {
-		let { startDate, endDate, dateName } = getTransactionsByPeriod(period);
+		// Prevent effect from running on initial mount when startDate is null
+		if (!startDate || !endDate) return;
+
+		const { periodStartDate, periodEndDate, dateName } =
+			getTransactionsByPeriod(period, startDate, endDate);
 		setPeriodDateName(dateName);
-		const URL = `http://localhost:3000/api/transactions/${startDate}/${endDate}`;
+
+		//need to store start and end date as state variables so that we can change them
+		const URL = `http://localhost:3000/api/transactions/${periodStartDate}/${periodEndDate}`;
 		const response = fetch(URL)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log("Api Called");
-				// console.log("Response", data);
 				setTransactions(data);
-
-				// trigger function get transaction
 			});
-	}, [period, periodDateName]);
-	console.log("Appcontext triggered");
+	}, [period, startDate, endDate]);
+
+	useEffect(() => {
+		// Initialize dates only once on mount
+		const { periodStartDate, periodEndDate, dateName } =
+			getTransactionsByPeriod(period);
+		setStartDate(periodStartDate);
+		setEndDate(periodEndDate);
+		setPeriodDateName(dateName);
+
+		//need to store start and end date as state variables so that we can change them
+		const URL = `http://localhost:3000/api/transactions/${periodStartDate}/${periodEndDate}`;
+		const response = fetch(URL)
+			.then((response) => response.json())
+			.then((data) => {
+				setTransactions(data);
+			});
+	}, []);
+
 	const value = {
 		transactions,
 		setTransactions,
@@ -44,6 +56,10 @@ export const AppContextProvider = ({ children }) => {
 		setPeriod,
 		periodDateName,
 		setPeriodDateName,
+		startDate,
+		setStartDate,
+		endDate,
+		setEndDate,
 	};
 
 	return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
