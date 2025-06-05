@@ -2,7 +2,7 @@ import React from "react";
 
 const NavMenu = () => {
 	return (
-		<div className="col-span-2 row-span-12 rounded-r-2xl shadow-md bg-white hidden sm:block">
+		<div className="col-span-2 row-span-11 rounded-r-2xl shadow-md bg-white hidden sm:block">
 			<nav className="flex flex-col h-full p-6">
 				<ul className="">
 					<h2>MENU</h2>

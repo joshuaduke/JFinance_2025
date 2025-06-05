@@ -2,7 +2,7 @@ import React from "react";
 
 const Header = () => {
 	return (
-		<section className="col-span-12 flex justify-between items-center border-b border-gray-300">
+		<section className="col-span-12 row-span-1 row-end-1 flex justify-between items-center border-b border-gray-300">
 			<div className="bg-red-400 ">
 				<h1 className="px-4 text-sm sm:text-xl sm:px-8">J-FINANCE</h1>
 			</div>
