@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const transactionRoute = require("./routes/transaction.route.js");
 const goalRoute = require("./routes/goal.route.js");
 const budgetRoute = require("./routes/budget.route.js");
+const authenticationRoute = require("./routes/authentication.route.js");
 const cors = require("cors");
 const app = express();
 const port = 3000;
@@ -17,6 +18,7 @@ app.use(cors());
 app.use("/api/transactions", transactionRoute);
 app.use("/api/goals", goalRoute);
 app.use("/api/budgets", budgetRoute);
+app.use("/api/auth", authenticationRoute);
 
 app.get("/", (req, res) => {
 	res.send("Hello World!");
