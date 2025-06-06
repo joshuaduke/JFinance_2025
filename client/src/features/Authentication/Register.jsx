@@ -4,28 +4,41 @@ import GoogleIcon from "../../assets/google-icon-logo-svgrepo-com.svg"
 import { useState } from "react";
 
 const Register = () => {
-	const [user, setUser] = useState({
-		email: "",
-		password: "",
-		firstName: "",
-		lastName: "",
-	});
+	// const [user, setUser] = useState({
+	// 	email: "",
+	// 	password: "",
+	// 	firstName: "",
+	// 	lastName: "",
+	// });
 	const [error, setError] = useState(false);
 	const [success, setSuccess] = useState(false);
 
 	async function handleSubmit(formData) {
 		console.log("Triggered");
-		console.log("Form Data", formData.get("email"));
+		console.log(
+			"Form Data",
+			formData.get("email"),
+			formData.get("password")
+		);
+		const user = {
+			username: formData.get("email"),
+			password: formData.get("password"),
+			firstName: formData.get("firstName"),
+			lastName: formData.get("lastName"),
+		};
 
 		//use formData instead of state in order to create user
 		try {
-			const response = await fetch("/api/auth/register", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(user),
-			});
+			const response = await fetch(
+				"http://localhost:3000/api/auth/register",
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(user),
+				}
+			);
 			console.log(response.status);
 		} catch (error) {
 			console.error("Handle Submit", error);
@@ -43,6 +56,20 @@ const Register = () => {
 				<h3 className="text-center py-4 text-2xl text-slate-800">
 					Create an Account
 				</h3>
+				<div className="flex justify-between gap-2">
+					<input
+						className="bg-white w-[50%] border border-slate-300 shadow-md my-2  rounded-md p-2"
+						placeholder="First Name"
+						type="text"
+						name="firstName"
+					/>
+					<input
+						className="bg-white w-[50%] border border-slate-300 shadow-md my-2 rounded-md p-2"
+						placeholder="Last Name"
+						type="text"
+						name="lastName"
+					/>
+				</div>
 				<input
 					className="bg-white w-full border border-slate-300 shadow-md my-2 rounded-md p-2"
 					placeholder="Enter Your Email"
