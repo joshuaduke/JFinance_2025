@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "../../assets/jFinanceLogo.png";
+import Logout from "../Authentication/Logout";
 
 const Header = () => {
 	return (
@@ -17,9 +18,7 @@ const Header = () => {
 					<p className="text-sm sm:text:md">Full Name</p>
 					<p className="text-[10px] text-gray-400">@Username</p>
 				</div>
-				<button className="bg-blue-600 text-white rounded-lg px-2 my-2 sm:mx-8">
-					Logout
-				</button>
+				<Logout />
 			</div>
 		</section>
 	);

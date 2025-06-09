@@ -1,28 +1,94 @@
 const User = require("../models/users.model");
 const passport = require("passport");
-const LocalStrategy = require("passport-local");
+const jwt = require("jsonwebtoken");
+const verifyToken = require("../middleware/authMiddleware");
+const jwtSecret = process.env.JWT_SECRET;
+// const getUser = async (req, res) => {
+// 	try {
+// 		const username = req.params.username;
+// 		const user = await User.findOne({ username: username });
+// 		if (user) {
+// 			console.log("User found:", user.username);
 
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// 			//passport.authenticate("local")(req, res, () => {
+// 			//return res.status(200).json(user)
+// 			//res.redirect("/"); // Or send a success response
+// 			//});
+// 			res.status(200).json(user);
+// 			//   return user;
+// 		} else {
+// 			console.log("User not found.");
+// 			return null;
+// 		}
+// 	} catch (error) {
+// 		// 500 - server error
+// 		res.status(500).json({ message: "Error finding user", error });
+// 	}
+// };
 
-const getUser = async (req, res) => {
+const authenticateUser = async (req, res) => {
 	try {
-		const username = req.params.email;
-		const user = await User.findOne({ username: username });
-		if (user) {
-			console.log("User found:", user.username);
-			res.status(200).json(user);
-			//   return user;
-		} else {
-			console.log("User not found.");
-			return null;
-		}
+		console.log("Authenticating user ", req.firstName);
+
+		res.status(200).json(
+			{ 
+				message: 'You are authenticated!', 
+				user: req.userId, 
+				email: req.email,
+				firstName: req.firstName,
+				lastName: req.lastName 
+			});
+		//res.status(200).json({ message: "You are authenticated!" });
+	} catch (error) {
+		res.status(500).json({ message: "Error authenticating user", error });
+	}
+};
+
+
+const login = async (req, res) => {
+	try {
+		passport.authenticate(
+			"local",
+			{ session: false },
+			(err, user, info) => {
+				if (err || !user) {
+					return res
+						.status(401)
+						.json({ message: "Authentication failed" });
+				}
+
+				// Generate JWT
+				const token = jwt.sign(
+					{ id: user._id, email: user.username, firstName: user.firstName, lastName: user.lastName },
+					jwtSecret,
+					{ expiresIn: "1d" }
+				);
+
+				res.json({ token });
+			}
+		)(req, res);
 	} catch (error) {
 		// 500 - server error
 		res.status(500).json({ message: "Error finding user", error });
 	}
 };
+
+const logout = async (req, res) => {
+	try {
+		res.json({ message: "Logged out successfully" });
+	} catch (error) {
+		// 500 - server error
+		res.status(500).json({ message: "Error logging out", error });
+	}
+};
+// const login = async (req, res) => {
+// 	try {
+//  		res.status(200).json({ message: 'Logged in successfully', user: req.user });
+// 	} catch (error) {
+// 		// 500 - server error
+// 		res.status(500).json({ message: "Error finding user", error });
+// 	}
+// }
 
 const createUser = async (req, res) => {
 	try {
@@ -30,7 +96,7 @@ const createUser = async (req, res) => {
 
 		const newUser = new User({
 			// username: req.body.username,
-			username: req.body.email,
+			username: req.body.username,
 			firstName: req.body.firstName,
 			lastName: req.body.lastName,
 		}); // You can add other fields here
@@ -39,14 +105,14 @@ const createUser = async (req, res) => {
 			if (err) {
 				console.error(err);
 				// Handle registration error (e.g., username already exists)
-				return res.status(500).json({ message: error });
+				return res.status(500).json({ message: err });
 			}
 			// User registered successfully
 
 			// You might want to log the user in automatically after registration
 			passport.authenticate("local")(req, res, () => {
-				// res.status(200).json(user);
-				res.redirect("/"); // Or send a success response
+				return res.status(200).json(user);
+				//	res.redirect("/"); // Or send a success response
 			});
 		});
 
@@ -60,5 +126,8 @@ const createUser = async (req, res) => {
 
 module.exports = {
 	createUser,
-	getUser,
+	// getUser,
+	login,
+	logout,
+	authenticateUser,
 };

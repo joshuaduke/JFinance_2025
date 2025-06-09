@@ -1,16 +1,17 @@
 import React from 'react'
+import { NavLink } from 'react-router'
 
 const FooterNavMenu = () => {
   return (
-    <div className='bg-white w-full fixed bottom-0 left-0 p-4 shadow-lh sm:hidden'>
+    <nav className='bg-white w-full fixed bottom-0 left-0 p-4 shadow-lh sm:hidden'>
         <ul className='flex justify-between'>
-          <li>Home</li>
-          <li>Expenses</li>
-          <li>Wallets</li>
-          <li>Goals</li>
-          <li>Settings</li>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/expenses" >Expenses</NavLink>
+          <NavLink to="wallets" >Wallets</NavLink>
+          <NavLink to="goals" >Goals</NavLink>
+          <NavLink to="settings" >Settings</NavLink>
         </ul>
-    </div>
+    </nav>
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import Image from "../../assets/jFinanceLogo.png"
 import GoogleIcon from "../../assets/google-icon-logo-svgrepo-com.svg"
 import { useState } from "react";
-
+import { Link } from "react-router";
 const Register = () => {
 	// const [user, setUser] = useState({
 	// 	email: "",
@@ -104,7 +104,9 @@ const Register = () => {
 				<hr className="text-slate-300" />
 				<p className="text-center text-slate-500 py-4">
 					Already have an account{" "}
-					<span className="text-red-700">Sign In</span>
+					<Link className="text-red-700" to="/login">
+						Sign In
+					</Link>
 				</p>
 			</form>
 		</section>

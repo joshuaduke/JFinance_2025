@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
 
+// passport-local-mongoose will handle the hashing of the password
 const UserSchema = mongoose.Schema(
     {
         firstName: {
@@ -14,7 +15,6 @@ const UserSchema = mongoose.Schema(
         email: {
             type: String,
             require: [true, "Please enter am email address"],
-            unique: true
         },
         // password: {
         //     type: String,
