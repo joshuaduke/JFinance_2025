@@ -40,7 +40,7 @@ const SignIn = ({ setIsAuthenticated, setUserId }) => {
 	}
 	return (
 		<section className="h-screen">
-			<div className="h-screen relative sm:mx-auto xl:w-[30%] xl:place-content-center">
+			<div className="h-screen relative sm:mx-auto xl:w-[30%] 2xl:w-[20%] xl:place-content-center">
 				<div>
 					<img
 						className="w-full h-[300px] lg:mx-auto lg:rounded-4xl lg:w-[200px] lg:h-[200px] lg:mb-6"
