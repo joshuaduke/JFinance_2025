@@ -153,6 +153,10 @@ export function getNextPeriod(period, startDate, endDate) {
 	const newDate = parseISO(startDate);
 	const currentDate = new Date();
 
+	console.log("Current Date vs New Date");
+	console.log("New Date", newDate);
+	console.log("Current Date", currentDate);
+
 	if (currentDate == newDate) {
 		return false;
 	}
@@ -173,8 +177,18 @@ export function getNextPeriod(period, startDate, endDate) {
 			// console.log("Start", start);
 			// subtract 1 month
 			// set new value of start date and end date
-			newPeriodObj.newStart = format(addMonths(newDate, 1), "yyyy-MM-dd");
-			newPeriodObj.newEnd = format(addMonths(newDate, 1), "yyyy-MM-dd");
+			if (newDate.getMonth() == currentDate.getMonth()) {
+				return false;
+			} else {
+				newPeriodObj.newStart = format(
+					addMonths(newDate, 1),
+					"yyyy-MM-dd"
+				);
+				newPeriodObj.newEnd = format(
+					addMonths(newDate, 1),
+					"yyyy-MM-dd"
+				);
+			}
 
 			break;
 		case "year":

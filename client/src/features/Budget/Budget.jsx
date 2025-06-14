@@ -19,7 +19,7 @@ const Budget = () => {
 	useEffect(() => {
 		let { periodStartDate, periodEndDate, dateName } =
 			getTransactionsByPeriod("month");
-		const URL = "http://localhost:3000/api/budgets";
+		const URL = `http://localhost:3000/api/budgets/${userId}`;
 		const transactionURL = `http://localhost:3000/api/transactions/${userId}/${periodStartDate}/${periodEndDate}`;
 
 		async function fetchData() {

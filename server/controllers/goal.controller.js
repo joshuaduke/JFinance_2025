@@ -2,7 +2,8 @@ const Goal = require("../models/goals.model");
 
 const getGoals = async (req, res) => {
 	try {
-		const goals = await Goal.find({});
+		const { userid } = req.params;
+		const goals = await Goal.find({ userID : userid});
 		res.status(200).json(goals);
 	} catch (error) {
 		res.status(500).json({ message: error });

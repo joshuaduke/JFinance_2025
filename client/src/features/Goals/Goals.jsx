@@ -3,9 +3,9 @@ import GoalItem from "./GoalItem";
 
 const Goals = () => {
 	const [goals, setGoals] = useState([]);
-
+	const userID = localStorage.getItem("userid");
 	useEffect(() => {
-		const URL = "http://localhost:3000/api/goals";
+		const URL = `http://localhost:3000/api/goals/${userID}`;
 		const response = fetch(URL)
 			.then((response) => response.json())
 			.then((data) => {

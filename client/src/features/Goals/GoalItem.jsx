@@ -15,6 +15,8 @@ const GoalItem = ({ data }) => {
 		(item) => item.subCategory === data.subCategory
 	);
 
+	console.log("Goal Data", arrSubCategoryItems);
+	
 	// use reduce method to sum all transactions from that type
 	// store in variable
 	let sumSubCategoryItems = arrSubCategoryItems.reduce(

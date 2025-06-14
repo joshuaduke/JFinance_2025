@@ -4,6 +4,7 @@ import { useContext } from "react";
 import ExpenseBarChart from "./ExpenseBarChart";
 import Period from "../../components/Period";
 import { getNextPeriod, getPreviousPeriod } from "../../helpers/dates";
+import { parseISO } from "date-fns";
 
 const Expenses = () => {
 	let {
@@ -40,7 +41,12 @@ const Expenses = () => {
 
 			{period != "all" && (
 				<div className="text-center flex justify-center py-4">
-					<button onClick={handlePeriodClick} id="previousPeriod">
+					<button
+						className="cursor-pointer
+"
+						onClick={handlePeriodClick}
+						id="previousPeriod"
+					>
 						<svg
 							width="16px"
 							height="16px"
@@ -64,7 +70,11 @@ const Expenses = () => {
 						</svg>
 					</button>
 					<h3 className="inline mx-4">{periodDateName}</h3>
-					<button onClick={handlePeriodClick} id="nextPeriod">
+					<button
+						className="cursor-pointer"
+						onClick={handlePeriodClick}
+						id="nextPeriod"
+					>
 						<svg
 							width="16px"
 							height="16px"

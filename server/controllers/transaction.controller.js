@@ -24,7 +24,7 @@ const getTransactions = async (req, res) => {
 			res.status(200).json(sortedTransactions);
 		} else {
 			// const transactions = await Transaction.find({});
-			const transactions = await Transaction.find({ _id: userId });
+			const transactions = await Transaction.find({ userID: userId });
 			let sortedTransactions = transactions.sort(
 				(a, b) => new Date(a.date) - new Date(b.date)
 			);

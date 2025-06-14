@@ -8,7 +8,8 @@ const {
 	deleteBudget,
 } = require("../controllers/budget.controller.js");
 
-router.get("/", getBudgets);
+router.get("/:userid", getBudgets);
+// router.get("/", getBudgets);
 
 router.get("/:id", getBudgetById);
 
