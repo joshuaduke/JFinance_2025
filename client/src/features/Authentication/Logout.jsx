@@ -12,6 +12,7 @@ const Logout = () => {
             
         // }
         localStorage.removeItem('token');
+        localStorage.removeItem("userid");
         window.location.reload();
     }
 

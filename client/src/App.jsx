@@ -1,26 +1,20 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
 import "./App.css";
-import Header from "./features/Header/Header";
-import NavMenu from "./features/NavMenu/NavMenu";
-import Actions from "./features/Actions/Actions";
-import Transactions from "./features/Transactions/Index";
-import Expenses from "./features/ExpensesGraph/Expenses";
-import Networth from "./features/Networth/Networth";
-import Budget from "./features/Budget/Budget";
-import Goals from "./features/Goals/Goals";
-import { AppContextProvider } from "./components/AppContext";
-import Overview from "./features/Overview/Overview";
-import FooterNavMenu from "./features/NavMenu/footerNaVMenu";
 import Register from "./features/Authentication/Register";
 import SignIn from "./features/Authentication/SignIn";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import ProtectedRoutes from "./features/Authentication/ProtectedRoutes";
 import LoginProtectedRoutes from "./features/Authentication/LoginProtectedRoutes";
+import { useContext } from "react";
+import { AppContext } from "./components/AppContext";
 
 function App() {
 	const [period, setperiod] = useState("month");
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
+	const [userId, setUserId] = useState("");
+	let { authUserId, authSetUserId } = useContext(AppContext);
+
 	console.log("Authenticated?", isAuthenticated);
 
 	useEffect(() => {
@@ -46,16 +40,13 @@ function App() {
 			console.log("Response", data.email);
 			if (response.status != 401) {
 				setIsAuthenticated(true);
+				authSetUserId(localStorage.getItem("userid"));
 			}
 		};
-
 		authenticateUser();
-	}, []);
-	// useEffect(() => {
-	// 	if (localStorage.getItem("token") != "") {
-	// 		setIsAuthenticated(true);
-	// 	}
-	// }, []);
+	}, [userId]);
+
+	console.log("User ID ", userId);
 
 	return (
 		<BrowserRouter>
@@ -64,7 +55,10 @@ function App() {
 					path="/login"
 					element={
 						<LoginProtectedRoutes isAuthenticated={isAuthenticated}>
-							<SignIn setIsAuthenticated={setIsAuthenticated} />
+							<SignIn
+								setIsAuthenticated={setIsAuthenticated}
+								setUserId={setUserId}
+							/>
 						</LoginProtectedRoutes>
 					}
 				/>
@@ -72,19 +66,18 @@ function App() {
 					path="/register"
 					element={
 						<LoginProtectedRoutes isAuthenticated={isAuthenticated}>
-							<Register />
+							<Register setIsAuthenticated={setIsAuthenticated} />
 						</LoginProtectedRoutes>
 					}
 				/>
 
 				<Route
-					path="/"
 					element={
-						<ProtectedRoutes isAuthenticated={isAuthenticated}>
-							<Dashboard />
-						</ProtectedRoutes>
+						<ProtectedRoutes isAuthenticated={isAuthenticated} />
 					}
-				/>
+				>
+					<Route path="/" element={<Dashboard />} />
+				</Route>
 			</Routes>
 		</BrowserRouter>
 	);

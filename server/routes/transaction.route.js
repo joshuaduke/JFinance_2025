@@ -10,7 +10,9 @@ const {
 
 // router.get("/", getTransactions);
 //optional parameters
-router.get("/{:startDate}{/:endDate}", getTransactions);
+
+// router.get("/{:startDate}{/:endDate}", getTransactions);
+router.get("/:id/{:startDate}{/:endDate}", getTransactions);
 
 router.get("/:id", getTransactionById);
 

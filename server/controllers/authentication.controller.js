@@ -3,28 +3,6 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const verifyToken = require("../middleware/authMiddleware");
 const jwtSecret = process.env.JWT_SECRET;
-// const getUser = async (req, res) => {
-// 	try {
-// 		const username = req.params.username;
-// 		const user = await User.findOne({ username: username });
-// 		if (user) {
-// 			console.log("User found:", user.username);
-
-// 			//passport.authenticate("local")(req, res, () => {
-// 			//return res.status(200).json(user)
-// 			//res.redirect("/"); // Or send a success response
-// 			//});
-// 			res.status(200).json(user);
-// 			//   return user;
-// 		} else {
-// 			console.log("User not found.");
-// 			return null;
-// 		}
-// 	} catch (error) {
-// 		// 500 - server error
-// 		res.status(500).json({ message: "Error finding user", error });
-// 	}
-// };
 
 const authenticateUser = async (req, res) => {
 	try {
@@ -64,7 +42,7 @@ const login = async (req, res) => {
 					{ expiresIn: "1d" }
 				);
 
-				res.json({ token });
+				res.json({ token, userId: user._id });
 			}
 		)(req, res);
 	} catch (error) {
@@ -81,14 +59,6 @@ const logout = async (req, res) => {
 		res.status(500).json({ message: "Error logging out", error });
 	}
 };
-// const login = async (req, res) => {
-// 	try {
-//  		res.status(200).json({ message: 'Logged in successfully', user: req.user });
-// 	} catch (error) {
-// 		// 500 - server error
-// 		res.status(500).json({ message: "Error finding user", error });
-// 	}
-// }
 
 const createUser = async (req, res) => {
 	try {
@@ -124,9 +94,34 @@ const createUser = async (req, res) => {
 	}
 };
 
+const getUser = async (req, res) => {
+	try {
+		const userId = req.params.userId;
+		console.log("Searching for ID:", userId);
+		
+		const user = await User.findById(userId);
+		if (user) {
+			console.log("User found:", user);
+
+			//passport.authenticate("local")(req, res, () => {
+			//return res.status(200).json(user)
+			//res.redirect("/"); // Or send a success response
+			//});
+			res.status(200).json(user);
+			//   return user;
+		} else {
+			console.log("User not found.");
+			return null;
+		}
+	} catch (error) {
+		// 500 - server error
+		res.status(500).json({ message: "Error finding user", error });
+	}
+};
+
 module.exports = {
 	createUser,
-	// getUser,
+	getUser,
 	login,
 	logout,
 	authenticateUser,

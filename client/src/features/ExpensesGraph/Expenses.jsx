@@ -5,8 +5,6 @@ import ExpenseBarChart from "./ExpenseBarChart";
 import Period from "../../components/Period";
 import { getNextPeriod, getPreviousPeriod } from "../../helpers/dates";
 
-const url = "http://localhost:3000/api/transactions";
-
 const Expenses = () => {
 	let {
 		transactions,

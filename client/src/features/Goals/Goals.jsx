@@ -22,8 +22,8 @@ const Goals = () => {
 				className="rounded-lg px-2 py-2"
 				style={{ backgroundColor: "#e9e9e9" }}
 			>
-				{goals.map((data) => (
-					<GoalItem data={data} />
+				{goals.map((data, index) => (
+					<GoalItem key={index} data={data} />
 				))}
 			</div>
 		</div>

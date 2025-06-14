@@ -12,6 +12,11 @@ export const AppContextProvider = ({ children }) => {
 	const [periodDateName, setPeriodDateName] = useState("");
 	const [startDate, setStartDate] = useState(null);
 	const [endDate, setEndDate] = useState(null);
+	const [authUserId, authSetUserId] = useState(
+		localStorage.getItem("userid")
+	);
+	const [userData, setUserData] = useState(null);
+	console.log("User Data", authUserId);
 
 	// this use effect only triggers when dependencies change
 	// using 2 use effects to prevent infinite loop that was occuring due to start date change
@@ -24,7 +29,7 @@ export const AppContextProvider = ({ children }) => {
 		setPeriodDateName(dateName);
 
 		//need to store start and end date as state variables so that we can change them
-		const URL = `http://localhost:3000/api/transactions/${periodStartDate}/${periodEndDate}`;
+		const URL = `http://localhost:3000/api/transactions/${authUserId}/${periodStartDate}/${periodEndDate}`;
 		const response = fetch(URL)
 			.then((response) => response.json())
 			.then((data) => {
@@ -41,13 +46,23 @@ export const AppContextProvider = ({ children }) => {
 		setPeriodDateName(dateName);
 
 		//need to store start and end date as state variables so that we can change them
-		const URL = `http://localhost:3000/api/transactions/${periodStartDate}/${periodEndDate}`;
+		const URL = `http://localhost:3000/api/transactions/${authUserId}/${periodStartDate}/${periodEndDate}`;
 		const response = fetch(URL)
 			.then((response) => response.json())
 			.then((data) => {
 				setTransactions(data);
 			});
-	}, []);
+	}, [authUserId]);
+
+	useEffect(() => {
+		// retrieve user data
+		const userURL = `http://localhost:3000/api/auth/user/${authUserId}`;
+		const userResponse = fetch(userURL)
+			.then((userResponse) => userResponse.json())
+			.then((data) => {
+				setUserData(data);
+			});
+	}, [authUserId]);
 
 	const value = {
 		transactions,
@@ -60,6 +75,10 @@ export const AppContextProvider = ({ children }) => {
 		setStartDate,
 		endDate,
 		setEndDate,
+		authUserId,
+		authSetUserId,
+		userData,
+		setUserData,
 	};
 
 	return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

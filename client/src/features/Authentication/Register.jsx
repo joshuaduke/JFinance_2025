@@ -1,17 +1,12 @@
-import React from 'react'
-import Image from "../../assets/jFinanceLogo.png"
-import GoogleIcon from "../../assets/google-icon-logo-svgrepo-com.svg"
+import React from "react";
+import Image from "../../assets/jFinanceLogo.png";
+import GoogleIcon from "../../assets/google-icon-logo-svgrepo-com.svg";
 import { useState } from "react";
-import { Link } from "react-router";
-const Register = () => {
-	// const [user, setUser] = useState({
-	// 	email: "",
-	// 	password: "",
-	// 	firstName: "",
-	// 	lastName: "",
-	// });
+import { Link, useNavigate } from "react-router";
+const Register = ({ setIsAuthenticated }) => {
 	const [error, setError] = useState(false);
 	const [success, setSuccess] = useState(false);
+	const navigate = useNavigate();
 
 	async function handleSubmit(formData) {
 		console.log("Triggered");
@@ -40,6 +35,10 @@ const Register = () => {
 				}
 			);
 			console.log(response.status);
+			if (response.status == 200) {
+				setIsAuthenticated(true);
+				navigate("/");
+			}
 		} catch (error) {
 			console.error("Handle Submit", error);
 		}
@@ -113,4 +112,4 @@ const Register = () => {
 	);
 };
 
-export default Register
+export default Register;

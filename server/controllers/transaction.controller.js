@@ -2,12 +2,15 @@ const Transaction = require("../models/transactions.model");
 
 const getTransactions = async (req, res) => {
 	try {
+		const userId = req.params.id;
 		if (req.params.startDate) {
 			console.log("Params triggered", req.params.startDate);
+			console.log("ID", req.params.id);
 			const startDate = req.params.startDate;
 			const endDate = req.params.endDate;
 			//need to convert to ISO 8601 since the data I used from my google sheets file uses ISO 8601 date formats
 			const transactions = await Transaction.find({
+				userID: userId,
 				date: {
 					$gte: new Date(startDate).toISOString(),
 					$lte: new Date(endDate).toISOString(),
@@ -20,7 +23,8 @@ const getTransactions = async (req, res) => {
 			);
 			res.status(200).json(sortedTransactions);
 		} else {
-			const transactions = await Transaction.find({});
+			// const transactions = await Transaction.find({});
+			const transactions = await Transaction.find({ _id: userId });
 			let sortedTransactions = transactions.sort(
 				(a, b) => new Date(a.date) - new Date(b.date)
 			);

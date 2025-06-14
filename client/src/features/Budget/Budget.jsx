@@ -5,7 +5,7 @@ import { getTransactionsByPeriod } from "../../helpers/dates";
 const Budget = () => {
 	const [budgets, setBudgets] = useState([]);
 	const [transactionsByMonth, setTransactionsByMonth] = useState([]);
-
+	const userId = localStorage.getItem("userid");
 	// useEffect(() => {
 	// 	const URL = "http://localhost:3000/api/budgets";
 	// 	const response = fetch(URL)
@@ -20,7 +20,7 @@ const Budget = () => {
 		let { periodStartDate, periodEndDate, dateName } =
 			getTransactionsByPeriod("month");
 		const URL = "http://localhost:3000/api/budgets";
-		const transactionURL = `http://localhost:3000/api/transactions/${periodStartDate}/${periodEndDate}`;
+		const transactionURL = `http://localhost:3000/api/transactions/${userId}/${periodStartDate}/${periodEndDate}`;
 
 		async function fetchData() {
 			const [response1, response2] = await Promise.all([
@@ -52,8 +52,9 @@ const Budget = () => {
 				style={{ backgroundColor: "#e9e9e9" }}
 			>
 				{" "}
-				{budgets.map((data) => (
+				{budgets.map((data, index) => (
 					<BudgetItem
+						key={index}
 						data={data}
 						transactions={transactionsByMonth}
 					/>

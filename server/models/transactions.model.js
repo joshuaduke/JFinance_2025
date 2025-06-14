@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const TransactionSchema = mongoose.Schema(
 	{
+		userID: {
+			type: String,
+			required: true,
+		},
 		name: {
 			type: String,
 			required: [true, "Please enter transaction name"],
