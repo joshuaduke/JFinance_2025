@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+@theme {
+	--color-*: initial;
+	--color-primary: oklch(0.2136 0.0483 257.95);
+	--color-secondary: oklch(0.3217 0.0584 261.19);
+	--color-accent: oklch(0.9077 0.1414 174.34);
+	--color-text: oklch(0.8786 0.0455 271.71);
+	--color-blank: oklch(1 0 0);
+	--color-danger: oklch(0.65 0.2011 22.8);
+}
+
 h2 {
 	font-weight: bold;
 }
@@ -9,7 +19,7 @@ h2 {
 }
 
 body {
-	background-color: #e9e9e9;
+	background-color: var(--color-primary)
 	/* padding: 0 20px; */
 }
 
