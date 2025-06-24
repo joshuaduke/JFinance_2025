@@ -17,7 +17,7 @@ function CategoryIcon({ category }) {
 		<div
 			id="category-icon"
 			style={{
-				border: `solid 3px ${componentCategory?.backgroundColour}`,
+				backgroundColor: `${componentCategory?.backgroundColour}`,
 			}}
 			className=""
 		>
@@ -26,7 +26,7 @@ function CategoryIcon({ category }) {
 				width="20"
 				height="20"
 				viewBox="0 0 24 24"
-				// fill={componentCategory.backgroundColour}
+				fill={"white"}
 			>
 				<path d={componentCategory?.path} />
 			</svg>

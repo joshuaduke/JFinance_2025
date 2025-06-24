@@ -8,6 +8,7 @@ const goalRoute = require("./routes/goal.route.js");
 const budgetRoute = require("./routes/budget.route.js");
 const authenticationRoute = require("./routes/authentication.route.js");
 const accountRoute = require("./routes/account.route.js");
+const categoryRoute = require("./routes/category.route.js");
 const LocalStrategy = require("passport-local");
 const MongoStore = require("connect-mongo");
 const cors = require("cors");
@@ -36,6 +37,7 @@ app.use("/api/goals", goalRoute);
 app.use("/api/budgets", budgetRoute);
 app.use("/api/auth", authenticationRoute);
 app.use("/api/accounts", accountRoute);
+app.use("/api/categories", categoryRoute);
 
 //passport js
 /*

@@ -8,6 +8,10 @@ import ProtectedRoutes from "./features/Authentication/ProtectedRoutes";
 import LoginProtectedRoutes from "./features/Authentication/LoginProtectedRoutes";
 import { useContext } from "react";
 import { AppContext } from "./components/AppContext";
+import Goals from "./pages/Goals/Goals";
+import Accounts from "./pages/Accounts/Accounts";
+import Transactions from "./pages/Transactions/Transactions";
+import Settings from "./pages/Settings/Settings";
 
 function App() {
 	const [period, setperiod] = useState("month");
@@ -77,6 +81,11 @@ function App() {
 					}
 				>
 					<Route path="/" element={<Dashboard />} />
+					<Route path="/goals" element={<Goals />} />
+					<Route path="/accounts" element={<Accounts />} />
+					<Route path="/expenses" element={<Transactions />} />
+					<Route path="/accounts" element={<Accounts />} />
+					<Route path="/settings" element={<Settings />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

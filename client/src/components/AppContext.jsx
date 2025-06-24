@@ -64,6 +64,17 @@ export const AppContextProvider = ({ children }) => {
 			});
 	}, [authUserId]);
 
+	// useeffect to retrieve data from collections
+	// useEffect(() => {
+	// 	// retrieve account data
+	// 	const userURL = `http://localhost:3000/api/auth/user/${authUserId}`;
+	// 	const userResponse = fetch(userURL)
+	// 		.then((userResponse) => userResponse.json())
+	// 		.then((data) => {
+	// 			setUserData(data);
+	// 		});
+	// }, [])
+
 	const value = {
 		transactions,
 		setTransactions,

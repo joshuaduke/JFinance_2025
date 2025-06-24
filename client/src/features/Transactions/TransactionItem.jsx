@@ -22,7 +22,9 @@ const TransactionItem = ({ data }) => {
 
 				<p
 					className="self-center"
-					style={{ color: element.cost < 0 ? "#CC0000" : "#108B10" }}
+					style={{
+						color: element.cost < 0 ? "#CC0000" : "#108B10",
+					}}
 				>
 					{formatCurrency(element.cost)}
 				</p>
