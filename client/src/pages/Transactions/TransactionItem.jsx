@@ -120,7 +120,12 @@ const TransactionItem = ({ data, collectionData }) => {
 					<form onSubmit={handleSubmit}>
 						<div className="flex justify-between">
 							<div className="flex flex-col">
-								<label htmlFor="category" className="opacity-70 text-sm">Category</label>
+								<label
+									htmlFor="category"
+									className="opacity-70 text-sm"
+								>
+									Category
+								</label>
 								<select
 									className="border border-gray-300 rounded-sm py-3 px-2"
 									name="category"
@@ -140,7 +145,12 @@ const TransactionItem = ({ data, collectionData }) => {
 								</select>
 							</div>
 							<div className="flex flex-col">
-								<label htmlFor="subCategory" className="opacity-70 text-sm">Sub Category</label>
+								<label
+									htmlFor="subCategory"
+									className="opacity-70 text-sm"
+								>
+									Sub Category
+								</label>
 								<select
 									className="border border-gray-300 rounded-sm py-3 px-2"
 									name="subCategory"
@@ -160,19 +170,29 @@ const TransactionItem = ({ data, collectionData }) => {
 								</select>
 							</div>
 							<div className="flex flex-col">
-								<label htmlFor="date" className="opacity-70 text-sm ">Date</label>
+								<label
+									htmlFor="date"
+									className="opacity-70 text-sm "
+								>
+									Date
+								</label>
 								<input
 									className="border border-gray-300 rounded-sm py-3 px-2"
 									type="date"
-                                    name="date"
-                                    id="date"
+									name="date"
+									id="date"
 									value={form.date}
 									onChange={handleChange}
 								/>
 							</div>
 
 							<div className="flex flex-col">
-								<label htmlFor="description" className="opacity-70 text-sm">Description</label>
+								<label
+									htmlFor="description"
+									className="opacity-70 text-sm"
+								>
+									Description
+								</label>
 								<input
 									className="border border-gray-300 rounded-sm py-3 px-2"
 									name="description"
@@ -183,7 +203,12 @@ const TransactionItem = ({ data, collectionData }) => {
 							</div>
 
 							<div className="flex flex-col">
-								<label htmlFor="importance" className="opacity-70 text-sm">Importance</label>
+								<label
+									htmlFor="importance"
+									className="opacity-70 text-sm"
+								>
+									Importance
+								</label>
 								<select
 									className="border border-gray-300 rounded-sm py-3 px-2"
 									name="importance"
@@ -208,7 +233,12 @@ const TransactionItem = ({ data, collectionData }) => {
 							</div>
 
 							<div className="flex flex-col">
-								<label htmlFor="account" className="opacity-70 text-sm">Account</label>
+								<label
+									htmlFor="account"
+									className="opacity-70 text-sm"
+								>
+									Account
+								</label>
 								<select
 									className="border border-gray-300 rounded-sm py-3 px-2"
 									name="account"
@@ -229,12 +259,17 @@ const TransactionItem = ({ data, collectionData }) => {
 							</div>
 
 							<div className="flex flex-col">
-								<label htmlFor="cost" className="opacity-70 text-sm">Amount</label>
+								<label
+									htmlFor="cost"
+									className="opacity-70 text-sm"
+								>
+									Amount
+								</label>
 								<input
 									className="border border-gray-300 rounded-sm py-3 px-2"
 									type="text"
-                                    name="cost"
-                                    id="cost"
+									name="cost"
+									id="cost"
 									value={form.cost}
 									onChange={handleChange}
 								/>
@@ -242,15 +277,23 @@ const TransactionItem = ({ data, collectionData }) => {
 						</div>
 
 						<div className="flex justify-end gap-2 my-4">
-							<button name="save" type="submit" className="bg-blue-300 py-3 px-4 rounded-md">
+							<button
+								name="save"
+								type="submit"
+								className="bg-accent text-blank py-3 px-4 rounded-md"
+							>
 								Save Changes
 							</button>
-							<button name="delete" type="submit" className="bg-blue-300 py-3 px-4 rounded-md">
+							<button
+								name="delete"
+								type="submit"
+								className="bg-danger text-blank py-3 px-4 rounded-md"
+							>
 								Delete Transaction
 							</button>
 
 							<button
-								className="bg-blue-300 py-3 px-4 rounded-md"
+								className="bg-text text-blank py-3 px-4 rounded-md"
 								onClick={toggleEdit}
 							>
 								Cancel

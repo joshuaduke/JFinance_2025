@@ -1,13 +1,14 @@
 import React from 'react'
 import FooterNavMenu from '../../features/NavMenu/footerNaVMenu'
+import Header from "../../features/Header/Header";
 
 const Accounts = () => {
   return (
-    <div>Accounts
-      <FooterNavMenu />
-    </div>
-    
-  )
+		<section>
+			<Header />
+			<FooterNavMenu />
+		</section>
+  );
 }
 
 export default Accounts

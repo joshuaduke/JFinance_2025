@@ -6,14 +6,22 @@ const ProgressBar = ({ percentage }) => {
 		percentageWidth = 100;
 	}
 	return (
-		<div className="w-[98%] bg-gray-200 rounded-full dark:bg-gray-700 mx-auto ">
+		<div className="w-[98%] bg-secondary rounded-sm dark:bg-primary mx-auto ">
 			<div
-				className="bg-blue-600 font-medium text-blue-100 text-center place-center leading-none rounded-full text-[8px] sm:text-[10px]"
+				className="bg-accent py-2 font-medium text-secondary text-center place-center leading-none rounded-sm text-[8px] sm:text-[20px]"
 				style={{ width: `${percentageWidth}%` }}
 			>
 				<p className="px-2">{Math.round(percentage)}%</p>
 			</div>
 		</div>
+		// <div className="w-[98%] bg-secondary rounded-full dark:bg-primary mx-auto ">
+		// 	<div
+		// 		className="bg-accent font-medium text-secondary text-center place-center leading-none rounded-full text-[8px] sm:text-[10px]"
+		// 		style={{ width: `${percentageWidth}%` }}
+		// 	>
+		// 		<p className="px-2">{Math.round(percentage)}%</p>
+		// 	</div>
+		// </div>
 	);
 };
 
