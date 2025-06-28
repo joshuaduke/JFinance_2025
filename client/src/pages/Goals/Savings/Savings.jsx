@@ -50,59 +50,59 @@ const Savings = () => {
 
 export default Savings;
 
-const savingsData = [
-	{
-		name: "TFSA",
-		category: "SAVINGS",
-		budgetAmount: 350,
-		description: "",
-	},
-	{
-		name: "Bills",
-		category: ["BILLS"],
-		budgetAmount: 250,
-		description: "",
-	},
-	{
-		name: "Emergency Fund",
-		category: ["SUBSCRIPTION"],
-		budgetAmount: 150,
-		description: "",
-	},
-	{
-		name: "FHSA",
-		category: ["GROCERIES"],
-		budgetAmount: 150,
-		description: "",
-	},
-	{
-		name: "Apartment Cost",
-		category: ["FUN", "FOOD"],
-		budgetAmount: 350,
-		description: "",
-	},
-	{
-		name: "Bills",
-		category: ["BILLS"],
-		budgetAmount: 250,
-		description: "",
-	},
-	{
-		name: "Subscription Services",
-		category: ["SUBSCRIPTION"],
-		budgetAmount: 150,
-		description: "",
-	},
-	{
-		name: "Groceries",
-		category: ["GROCERIES"],
-		budgetAmount: 150,
-		description: "",
-	},
-	{
-		name: "Groceries",
-		category: ["GROCERIES"],
-		budgetAmount: 150,
-		description: "",
-	},
-];
+// const savingsData = [
+// 	{
+// 		name: "TFSA",
+// 		category: "SAVINGS",
+// 		budgetAmount: 350,
+// 		description: "",
+// 	},
+// 	{
+// 		name: "Bills",
+// 		category: ["BILLS"],
+// 		budgetAmount: 250,
+// 		description: "",
+// 	},
+// 	{
+// 		name: "Emergency Fund",
+// 		category: ["SUBSCRIPTION"],
+// 		budgetAmount: 150,
+// 		description: "",
+// 	},
+// 	{
+// 		name: "FHSA",
+// 		category: ["GROCERIES"],
+// 		budgetAmount: 150,
+// 		description: "",
+// 	},
+// 	{
+// 		name: "Apartment Cost",
+// 		category: ["FUN", "FOOD"],
+// 		budgetAmount: 350,
+// 		description: "",
+// 	},
+// 	{
+// 		name: "Bills",
+// 		category: ["BILLS"],
+// 		budgetAmount: 250,
+// 		description: "",
+// 	},
+// 	{
+// 		name: "Subscription Services",
+// 		category: ["SUBSCRIPTION"],
+// 		budgetAmount: 150,
+// 		description: "",
+// 	},
+// 	{
+// 		name: "Groceries",
+// 		category: ["GROCERIES"],
+// 		budgetAmount: 150,
+// 		description: "",
+// 	},
+// 	{
+// 		name: "Groceries",
+// 		category: ["GROCERIES"],
+// 		budgetAmount: 150,
+// 		description: "",
+// 	},
+// ];

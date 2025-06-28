@@ -13,7 +13,6 @@ router.get("/", getCategories);
 
 router.post("/", createCategory);
 
-
 module.exports = router;
 
 // [
