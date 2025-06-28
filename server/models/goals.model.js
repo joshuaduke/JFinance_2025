@@ -36,7 +36,7 @@ const GoalSchema = mongoose.Schema(
 			require: [true, "Please enter a Goal amount"],
 		},
 		subCategory: {
-			type: String,
+			type: [String],
 			require: true,
 		},
 	},

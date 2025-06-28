@@ -16,7 +16,11 @@ const CategorySchema = mongoose.Schema({
     path: {
         type: String,
         required: true
-    }
+    },
+    subCategory: {
+	type: [String],
+	require: true,
+	},
 })
 
 const Category = mongoose.model("Category", CategorySchema)
