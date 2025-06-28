@@ -2,16 +2,15 @@ import FooterNavMenu from "../../features/NavMenu/footerNaVMenu";
 import { AppContext } from "../../components/AppContext";
 import { useState, useContext, useEffect } from "react";
 import TransactionDate from "./TransactionDate";
-import NavMenu from "../../features/NavMenu/NavMenu";
 import Header from "../../features/Header/Header";
 import { getAccounts, getCategories } from "../../helpers/getters";
 
 const Transactions = () => {
 	const [filteredDates, setFilteredDates] = useState([]);
-  // const [accountOptions, setAccountOptions] = useState([]);
-  const [collectionData, setCollectionData] = useState({})
+	// const [accountOptions, setAccountOptions] = useState([]);
+	const [collectionData, setCollectionData] = useState({});
 
-  //Retrieving transactions from API
+	//Retrieving transactions from API
 	const { transactions } = useContext(AppContext);
 
 	useEffect(() => {
@@ -37,48 +36,53 @@ const Transactions = () => {
 
 	// }, [transactionData]);
 
-  useEffect(() => { 
-    try {
-        getAccounts().then(result => {
-          setCollectionData(prevCollectionData => ({...prevCollectionData, accountsData: result}));
-        })
-        
-        getCategories().then(result => {
-          setCollectionData(prevCollectionData => ({...prevCollectionData, categoryData: result}));
-        })
-        
-    } catch (error) {
-      console.error("Error in retrieving collection data", error)
-    }
+	useEffect(() => {
+		try {
+			getAccounts().then((result) => {
+				setCollectionData((prevCollectionData) => ({
+					...prevCollectionData,
+					accountsData: result,
+				}));
+			});
 
-  }, [])
+			getCategories().then((result) => {
+				setCollectionData((prevCollectionData) => ({
+					...prevCollectionData,
+					categoryData: result,
+				}));
+			});
+		} catch (error) {
+			console.error("Error in retrieving collection data", error);
+		}
+	}, []);
 
-  const data = {
-    accounts: [{id: 123}, {id: 123}],
-    categories: [{id: 123}, {id: 123}],
-    importance: [{id: 123}, {id: 123}],
-  }
+	const data = {
+		accounts: [{ id: 123 }, { id: 123 }],
+		categories: [{ id: 123 }, { id: 123 }],
+		importance: [{ id: 123 }, { id: 123 }],
+	};
 
-  console.log("Collection Data", collectionData);
-  
+	console.log("Collection Data", collectionData);
 
 	return (
-		<section className="sm:mx-auto lg:w-11/12"> 
-      <Header />
+		<section className="mb-18 sm:mx-auto lg:w-11/12">
+			<Header />
 			<div className="">
 				<div className="py-8 text-center">
-					<h2>Transactions</h2>
+					<h3 className="">Transactions</h3>
 				</div>
 				<div className="col-span-12 sm:h-full sm:block sm:col-span-3 sm:row-span-11 overflow-auto">
 					{/** Component for transaction day of month */}
-					<h3 className="px-4 py-2">Transactions</h3>
+					<h3 className="text-text text-2xl px-4 py-2 ">
+						Transactions
+					</h3>
 					{/* component for transaction */}
 					{filteredDates.map((date, index) => (
 						<TransactionDate
 							key={index}
 							date={date}
 							data={transactions}
-              collectionData={collectionData}
+							collectionData={collectionData}
 						/>
 					))}
 				</div>

@@ -7,7 +7,10 @@
 	--color-accent: oklch(0.9077 0.1414 174.34);
 	--color-text: oklch(0.8786 0.0455 271.71);
 	--color-blank: oklch(1 0 0);
+	--color-black: oklch(0 0 0);
 	--color-danger: oklch(0.65 0.2011 22.8);
+	--font-headers: "Trebuchet MS", "sans-serif";
+	--font-text: 'Comic Sans MS', monospace;
 }
 
 h2 {
@@ -19,8 +22,12 @@ h2 {
 }
 
 body {
-	/* background-color: var(--color-primary) */
-	/* padding: 0 20px; */
+	background-color: var(--color-primary);
+	padding: 0 20px;
+}
+
+a.active {
+	color: var(--color-accent) !important; 
 }
 
 .container {

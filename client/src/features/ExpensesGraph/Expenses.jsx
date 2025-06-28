@@ -36,7 +36,7 @@ const Expenses = () => {
 	}
 
 	return (
-		<div className="col-span-12 sm:col-span-7 sm:row-span-5 bg-white border-1 border-gray-300 p-2 rounded-2xl ">
+		<div className="bg-secondary shadow-md shadow-black col-span-12 sm:col-span-7 sm:row-span-5 p-2 rounded-2xl ">
 			<Period />
 
 			{period != "all" && (
@@ -50,9 +50,8 @@ const Expenses = () => {
 						<svg
 							width="16px"
 							height="16px"
-							className="place-self-center"
+							className="place-self-center fill-accent"
 							viewBox="0 0 16 16"
-							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
 						>
 							<g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
@@ -62,14 +61,11 @@ const Expenses = () => {
 								strokeLinejoin="round"
 							></g>
 							<g id="SVGRepo_iconCarrier">
-								<path
-									d="M8 10L8 14L6 14L-2.62268e-07 8L6 2L8 2L8 6L16 6L16 10L8 10Z"
-									fill="#000000"
-								></path>
+								<path d="M8 10L8 14L6 14L-2.62268e-07 8L6 2L8 2L8 6L16 6L16 10L8 10Z"></path>
 							</g>
 						</svg>
 					</button>
-					<h3 className="inline mx-4">{periodDateName}</h3>
+					<h3 className="text-text inline mx-4">{periodDateName}</h3>
 					<button
 						className="cursor-pointer"
 						onClick={handlePeriodClick}
@@ -78,9 +74,8 @@ const Expenses = () => {
 						<svg
 							width="16px"
 							height="16px"
-							className="place-self-center"
+							className="place-self-center fill-accent"
 							viewBox="0 0 16 16"
-							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
 						>
 							<g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
@@ -91,10 +86,7 @@ const Expenses = () => {
 							></g>
 							<g id="SVGRepo_iconCarrier">
 								{" "}
-								<path
-									d="M8 6L8 2L10 2L16 8L10 14L8 14L8 10L-1.74845e-07 10L-3.01991e-07 6L8 6Z"
-									fill="#000000"
-								></path>{" "}
+								<path d="M8 6L8 2L10 2L16 8L10 14L8 14L8 10L-1.74845e-07 10L-3.01991e-07 6L8 6Z"></path>{" "}
 							</g>
 						</svg>
 					</button>
@@ -103,7 +95,7 @@ const Expenses = () => {
 
 			{period == "all" && (
 				<div className="text-center py-4">
-					<h3 className="inline mx-4">{periodDateName}</h3>
+					<h3 className="text-text inline mx-4">{periodDateName}</h3>
 				</div>
 			)}
 

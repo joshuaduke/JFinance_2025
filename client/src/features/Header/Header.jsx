@@ -9,7 +9,7 @@ const Header = () => {
 	const { userData, setUserData } = useContext(AppContext);
 
 	return (
-		<section className="col-span-12 row-span-1 row-end-1 flex basis-1 justify-between items-center border-b border-gray-300">
+		<section className="col-span-12 row-span-1 row-end-1 flex basis-1 justify-between items-center border-b border-accent text-text">
 			<div className="basis-1/3">
 				{/* <h1 className="px-4 text-sm sm:text-xl sm:px-8">J-FINANCE</h1> */}
 				<img
@@ -26,11 +26,14 @@ const Header = () => {
 					<li>
 						<NavLink to="/expenses">Expenses</NavLink>
 					</li>
-					<li>
+					{/* <li>
 						<NavLink to="/accounts">Accounts</NavLink>
-					</li>
+					</li> */}
 					<li>
 						<NavLink to="/goals">Goals</NavLink>
+					</li>
+					<li>
+						<NavLink to="/settings">Settings</NavLink>
 					</li>
 				</ul>
 			</nav>

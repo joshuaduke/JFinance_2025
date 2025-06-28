@@ -19,8 +19,8 @@ const Transaction = ({ date, data }) => {
 	let dateCashFlow = calculateTransactionsByDate(currentTransactions);
 
 	return (
-		<div className="">
-			<div className="flex justify-between py-1 px-2 bg-gray-300">
+		<div className="border-b-18 border-primary">
+			<div className="text-accent flex justify-between py-1 px-2">
 				{/* <p>{currentTransactionDate}</p> */}
 				<p>{formatTransactionDate(currentTransactionDate)}</p>
 				<p>{formatCurrency(dateCashFlow)}</p>

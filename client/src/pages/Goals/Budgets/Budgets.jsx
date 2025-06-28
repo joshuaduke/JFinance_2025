@@ -34,19 +34,25 @@ const Budgets = () => {
 
 	return (
 		<section className="sm:mx-auto lg:w-10/12">
-			<h1 className="text-4xl my-6">Budgets</h1>
+			<h3 className="text-text text-4xl my-6">Budgets</h3>
 
-			<div className="grid grid-cols-4 gap-6 my-10">
+			<div className="grid sm:grid-cols-4 gap-6 my-10">
 				{budgetsData.map((budgetItem) => (
-					<BudgetCard data={budgetItem} transactions={transactionsByMonth}/>
+					<BudgetCard
+						data={budgetItem}
+						transactions={transactionsByMonth}
+					/>
 				))}
-				<div className="bg-text p-4 rounded-lg flex flex-col gap-y-5 justify-center">
-					<p className="text-center">Take control of your expenses and save more money with budgets!</p>
-					<button className="bg-accent text-blank py-3 rounded-md">Create a New Budget</button>
+				<div className="bg-secondary p-4 rounded-lg flex flex-col gap-y-5 justify-center">
+					<p className="text-text text-center">
+						Take control of your expenses and save more money with
+						budgets!
+					</p>
+					<button className="bg-accent text-primary py-3 rounded-md">
+						Create a New Budget
+					</button>
 				</div>
-
 			</div>
-
 		</section>
 	);
 };

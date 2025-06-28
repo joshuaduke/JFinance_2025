@@ -1,28 +1,32 @@
 import React from 'react'
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+	Chart as ChartJS,
+	CategoryScale,
+	LinearScale,
+	PointElement,
+	BarElement,
+	Title,
+	Tooltip,
+	Legend,
+	scales,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 // import tramsactionsFormatting from '../../helpers/transactionsFormatting'
-import { getCategorySums, getDateSums } from '../../helpers/transactionsFormatting';
+import {
+	getCategorySums,
+	getDateSums,
+} from "../../helpers/transactionsFormatting";
 // import { AppContext } from '../../components/AppContext';
 // import { useContext } from 'react';
 
 ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
+	CategoryScale,
+	LinearScale,
+	PointElement,
+	BarElement,
+	Title,
+	Tooltip,
+	Legend
 );
 
 const ExpenseBarChart = ({ transactions }) => {
@@ -43,13 +47,21 @@ const ExpenseBarChart = ({ transactions }) => {
 			title: {
 				text: "This is a chart representing cost per category",
 				display: true,
+				color: "#ccd6f6",
 			},
 		},
-		// parsing:
-		// {
-		//     xAxisKey: 'category',
-		//     yAxisKey: 'totalSum'
-		// },
+		scales: {
+			x: {
+				ticks: {
+					color: "#ccd6f6", // Color for X-axis labels
+				},
+			},
+			y: {
+				ticks: {
+					color: "#ccd6f6", // Color for Y-axis labels
+				},
+			},
+		},
 	};
 	const data = {
 		labels: labels,
@@ -57,8 +69,8 @@ const ExpenseBarChart = ({ transactions }) => {
 			{
 				label: "Expenses",
 				data: values,
-				backgroundColor: "rgba(21, 93, 252, 0.7)",
-				borderColor: "rgba(0, 0, 0, 1)",
+				backgroundColor: "rgba(100, 255, 218)",
+				borderColor: "rgba(255, 255, 255, 1)",
 			},
 		],
 	};

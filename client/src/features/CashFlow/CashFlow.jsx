@@ -9,10 +9,6 @@ const CashFlow = ({ type }) => {
 	const { transactions, setTransactions } = useContext(AppContext);
 	let bkColor = "";
 	let bdColor = "";
-	// const [periodData, setperiodData] = useState(
-	// 	getTransactionsByPeriod("all")
-	// );
-	// const [cashFlowAmount, setcashFlowAmount] = useState(0);
 
 	function calculateCashFlow(data) {
 		let result;
@@ -38,45 +34,27 @@ const CashFlow = ({ type }) => {
 
 	let cashflowAmount = calculateCashFlow(transactions);
 
-	// const handleChange = (event) => {
-	// 	setPeriod(event.target.value);
-	// 	console.log("new Period", period);
-	// 	setperiodData(getTransactionsByPeriod(period));
-	// };
-
 	return (
 		<div
-			className="border-1 rounded-lg flex flex-col justify-between shadow-lg"
-			style={{ backgroundColor: bkColor, borderColor: bkColor }}
+			className="shadow-md shadow-black bg-secondary rounded-lg flex flex-col justify-between"
+			// style={{ backgroundColor: bkColor, borderColor: bkColor }}
 		>
-			{/* <div>
-				<label htmlFor="period-select">Period</label>
-				<select
-					name="periods"
-					id="period-select"
-					value={period}
-					onChange={handleChange}
-				>
-					<option value="week">Week</option>
-					<option value="month">Month</option>
-					<option value="year">Year</option>
-					<option value="all">All</option>
-				</select>
-			</div> */}
 			<div
 				className="rounded-lg py-4 px-2"
-				style={{
-					backgroundColor: bdColor,
-				}}
+				// style={{
+				// 	backgroundColor: bdColor,
+				// }}
 			>
-				<p>{type}</p>
+				<p className="text-text">{type}</p>
 				{/* If period is not 'all' calculate percentage difference from last month/year/week */}
 			</div>
 			<div className="py-4 px-2">
-				<h3 className="font-extrabold">
+				<h3 className="font-extrabold" style={{ color: bkColor }}>
 					{formatCurrency(cashflowAmount)}
 				</h3>
-				<p className="text-xs font-thin">+4% from last month </p>
+				<p className="text-xs text-text font-thin">
+					+4% from last month{" "}
+				</p>
 			</div>
 		</div>
 	);

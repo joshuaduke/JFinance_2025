@@ -9,19 +9,16 @@ const Goals = () => {
 		const response = fetch(URL)
 			.then((response) => response.json())
 			.then((data) => {
-				//console.log("Response", data);
+				console.log("Goal Response", data);
 				setGoals(data);
 			});
 	}, []);
 
 	return (
-		<div className="col-span-12 sm:col-span-4 sm:row-span-4 shadow-lg rounded-2xl overflow-auto pt-2 pb-4 px-4 bg-white">
-			<h3>My Goals</h3>
+		<div className="col-span-12 sm:col-span-3 sm:row-span-6 shadow-lg rounded-2xl overflow-auto pb-4 bg-white">
+			<h3 className="text-2xl text-text pb-4">My Goals</h3>
 
-			<div
-				className="rounded-lg px-2 py-2"
-				style={{ backgroundColor: "#e9e9e9" }}
-			>
+			<div className="bg-secondary rounded-lg px-2 py-2 ">
 				{goals.map((data, index) => (
 					<GoalItem key={index} data={data} />
 				))}

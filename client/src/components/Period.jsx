@@ -13,7 +13,7 @@ const Period = () => {
     }
 	return (
 		<div className="text-center">
-			<h3>Period</h3>
+			<h3 className="text-text text-xl">Period</h3>
 			<ul className="grid w-fit mx-auto gap-2 grid-cols-4">
 				<li>
 					<input
@@ -27,7 +27,7 @@ const Period = () => {
 					/>
 					<label
 						htmlFor="all"
-						className="inline-flex  items-center w-fit min-w-[75px] text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 dark:peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+						className="inline-flex  items-center w-fit min-w-[75px] text-accent bg-secondary rounded-md cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 dark:peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
 					>
 						<div className="w-full ">All</div>
 					</label>
@@ -44,7 +44,7 @@ const Period = () => {
 					/>
 					<label
 						htmlFor="year"
-						className="inline-flex  items-center w-fit min-w-[75px] text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 dark:peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+						className="inline-flex  items-center w-fit min-w-[75px] text-accent bg-secondary rounded-md cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 dark:peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
 					>
 						<div className="w-full ">Year</div>
 					</label>
@@ -61,7 +61,7 @@ const Period = () => {
 					/>
 					<label
 						htmlFor="month"
-						className="inline-flex  items-center w-fit min-w-[75px] text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 dark:peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+						className="inline-flex  items-center w-fit min-w-[75px] text-accent bg-secondary rounded-md cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 dark:peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
 					>
 						<div className="w-full ">Month</div>
 					</label>
@@ -78,7 +78,7 @@ const Period = () => {
 					/>
 					<label
 						htmlFor="week"
-						className="inline-flex  items-center w-fit min-w-[75px] text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 dark:peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+						className="inline-flex  items-center w-fit min-w-[75px] text-accent bg-secondary rounded-md cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 dark:peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
 					>
 						<div className="w-full ">Week</div>
 					</label>

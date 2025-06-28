@@ -9,9 +9,9 @@ const {
 } = require("../controllers/account.controller");
 
 
-router.get("/", getAllAccounts);
+router.get("/:userid", getAllAccounts);
 
-router.get("/:id", getAccountById);
+router.get("/account/:id", getAccountById);
 
 router.post("/", createAccount);
 

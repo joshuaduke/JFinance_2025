@@ -26,9 +26,11 @@ const getAccountById = async (req, res) => {
 
 const getAllAccounts = async (req, res) => {
     try {
-        const accountID = req.params.id;
+        const accountID = req.params.userid;
         console.log(accountID);
-        const response = await Account.find({})
+        const response = await Account.find({
+			userID: accountID,
+		});
 
         res.status(200).json(response);
     } catch (error) {

@@ -86,7 +86,7 @@ const TransactionItem = ({ data, collectionData }) => {
 		<>
 			{isEdit == false ? (
 				<div
-					className=" py-2 px-2 hover:bg-gray-200"
+					className="text-text py-2 px-2 hover:bg-gray-200"
 					onClick={toggleEdit}
 				>
 					<div className="flex justify-between">
@@ -107,9 +107,9 @@ const TransactionItem = ({ data, collectionData }) => {
 
 						<p
 							className="self-center px-2"
-							style={{
-								color: data.cost < 0 ? "#CC0000" : "#108B10",
-							}}
+							// style={{
+							// 	color: data.cost < 0 ? "#CC0000" : "#108B10",
+							// }}
 						>
 							{formatCurrency(data.cost)}
 						</p>
@@ -122,12 +122,12 @@ const TransactionItem = ({ data, collectionData }) => {
 							<div className="flex flex-col">
 								<label
 									htmlFor="category"
-									className="opacity-70 text-sm"
+									className="text-accent opacity-70 text-sm"
 								>
 									Category
 								</label>
 								<select
-									className="border border-gray-300 rounded-sm py-3 px-2"
+									className="text-text  border border-gray-300 rounded-sm py-3 px-2"
 									name="category"
 									id="category"
 									value={form.category}
@@ -147,12 +147,12 @@ const TransactionItem = ({ data, collectionData }) => {
 							<div className="flex flex-col">
 								<label
 									htmlFor="subCategory"
-									className="opacity-70 text-sm"
+									className="text-text opacity-70 text-sm"
 								>
 									Sub Category
 								</label>
 								<select
-									className="border border-gray-300 rounded-sm py-3 px-2"
+									className="text-text border border-gray-300 rounded-sm py-3 px-2"
 									name="subCategory"
 									id="subCategory"
 									value={form.category}
@@ -172,12 +172,12 @@ const TransactionItem = ({ data, collectionData }) => {
 							<div className="flex flex-col">
 								<label
 									htmlFor="date"
-									className="opacity-70 text-sm "
+									className="text-text opacity-70 text-sm "
 								>
 									Date
 								</label>
 								<input
-									className="border border-gray-300 rounded-sm py-3 px-2"
+									className="text-text border border-gray-300 rounded-sm py-3 px-2"
 									type="date"
 									name="date"
 									id="date"
@@ -189,12 +189,12 @@ const TransactionItem = ({ data, collectionData }) => {
 							<div className="flex flex-col">
 								<label
 									htmlFor="description"
-									className="opacity-70 text-sm"
+									className="text-text opacity-70 text-sm"
 								>
 									Description
 								</label>
 								<input
-									className="border border-gray-300 rounded-sm py-3 px-2"
+									className="text-text border border-gray-300 rounded-sm py-3 px-2"
 									name="description"
 									id="description"
 									value={form.description}
@@ -205,12 +205,12 @@ const TransactionItem = ({ data, collectionData }) => {
 							<div className="flex flex-col">
 								<label
 									htmlFor="importance"
-									className="opacity-70 text-sm"
+									className="text-text opacity-70 text-sm"
 								>
 									Importance
 								</label>
 								<select
-									className="border border-gray-300 rounded-sm py-3 px-2"
+									className="text-text border border-gray-300 rounded-sm py-3 px-2"
 									name="importance"
 									id="importance"
 									value={form.importance}
@@ -235,12 +235,12 @@ const TransactionItem = ({ data, collectionData }) => {
 							<div className="flex flex-col">
 								<label
 									htmlFor="account"
-									className="opacity-70 text-sm"
+									className="text-text opacity-70 text-sm"
 								>
 									Account
 								</label>
 								<select
-									className="border border-gray-300 rounded-sm py-3 px-2"
+									className="text-text border border-gray-300 rounded-sm py-3 px-2"
 									name="account"
 									id="account"
 									value={form.account}
@@ -261,12 +261,12 @@ const TransactionItem = ({ data, collectionData }) => {
 							<div className="flex flex-col">
 								<label
 									htmlFor="cost"
-									className="opacity-70 text-sm"
+									className="text-text opacity-70 text-sm"
 								>
 									Amount
 								</label>
 								<input
-									className="border border-gray-300 rounded-sm py-3 px-2"
+									className="text-text border border-gray-300 rounded-sm py-3 px-2"
 									type="text"
 									name="cost"
 									id="cost"
@@ -280,20 +280,20 @@ const TransactionItem = ({ data, collectionData }) => {
 							<button
 								name="save"
 								type="submit"
-								className="bg-accent text-blank py-3 px-4 rounded-md"
+								className="bg-accent text-primary py-3 px-4 rounded-md"
 							>
 								Save Changes
 							</button>
 							<button
 								name="delete"
 								type="submit"
-								className="bg-danger text-blank py-3 px-4 rounded-md"
+								className="bg-danger text-primary py-3 px-4 rounded-md"
 							>
 								Delete Transaction
 							</button>
 
 							<button
-								className="bg-text text-blank py-3 px-4 rounded-md"
+								className="bg-text text-primary py-3 px-4 rounded-md"
 								onClick={toggleEdit}
 							>
 								Cancel

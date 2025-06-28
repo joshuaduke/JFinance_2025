@@ -19,7 +19,7 @@ const Logout = () => {
 	return (
 		<button
 			onClick={handleLogout}
-			className="bg-blue-600 text-white rounded-lg px-2 my-2 sm:mx-8 lg:mr-0"
+			className="bg-secondary text-accent rounded-lg px-2 my-2 sm:mx-8 lg:mr-0"
 		>
 			Logout
 		</button>

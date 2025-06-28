@@ -17,14 +17,17 @@ const TransactionDate = ({ date, data, collectionData }) => {
 	
 
 	return (
-		<div className="my-4 bg-white  shadow-md md:rounded-lg">
-			<div className="flex justify-between p-4 ">
+		<div className="my-4 bg-secondary  shadow-md shadow-black rounded-md md:rounded-lg">
+			<div className="text-accent flex justify-between p-4 ">
 				{/* <p>{currentTransactionDate}</p> */}
 				<p>{formatTransactionDate(currentTransactionDate)}</p>
-				<p className='opacity-60'>{formatCurrency(dateCashFlow)}</p>
+				<p className="opacity-60">{formatCurrency(dateCashFlow)}</p>
 			</div>
-			
-			<TransactionsByDate data={currentTransactions} collectionData={collectionData}/>
+
+			<TransactionsByDate
+				data={currentTransactions}
+				collectionData={collectionData}
+			/>
 		</div>
 	);
 };

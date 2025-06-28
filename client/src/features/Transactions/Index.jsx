@@ -23,9 +23,9 @@ const Transactions = () => {
 	//When using useContext within useEffect, it's important to consider the dependencies of the effect. If the context value is used within the effect, it should be included in the dependency array to ensure that the effect is re-run whenever the context value changes.
 
 	return (
-		<div className="hidden col-span-12 h-[300px] sm:h-full sm:block sm:col-span-3 sm:row-span-11 rounded-l-2xl bg-white shadow-lg overflow-auto">
+		<div className="bg-secondary rounded-2xl col-span-12 h-[600px] sm:h-auto sm:col-span-7 sm:row-span-4 overflow-auto">
 			{/** Component for transaction day of month */}
-			<h3 className="px-4 py-2">Transactions</h3>
+			<h3 className="text-text text-2xl px-4 py-2">Transactions</h3>
 			{/* component for transaction */}
 			{filteredDates.map((date, index) => (
 				<Transaction key={index} date={date} data={transactions} />

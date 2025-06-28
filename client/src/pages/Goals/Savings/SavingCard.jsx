@@ -1,5 +1,6 @@
 import React from "react";
 import  ProgressBar  from "../../../components/ProgressBar";
+import { formatCurrency } from "../../../helpers/currency";
 
 const SavingCard = ({ data, transactions }) => {
 	// const { transactions, setTransactions } = useContext(AppContext);
@@ -23,25 +24,32 @@ const SavingCard = ({ data, transactions }) => {
 	percentage = (sumSubCategoryItems / data.goalAmount) * -100;
 
 	return (
-		<div className="bg-text p-4 rounded-lg flex flex-col gap-y-5 justify-between">
+		<div className="bg-secondary p-4 rounded-lg flex flex-col gap-y-5 justify-between">
 			<div>
-				<h2 className="text-xl">{data.name}</h2>
+				<h2 className="text-text text-xl">{data.name}</h2>
 				<ul className="flex gap-1">
 					{data.subCategory.map((item) => (
-						<li className="text-xs p-1 bg-accent rounded-lg">{item}</li>
+						<li className="text-xs p-1 bg-accent rounded-lg">
+							{item}
+						</li>
 					))}
 				</ul>
 			</div>
 			<div>
-				<h3 className="">
-					<span className="text-xl text-accent font-bold">{sumSubCategoryItems * -1}</span> left <br /> From {data.goalAmount}
+				<h3 className="text-text">
+					<span className="text-xl text-accent font-bold">
+						{formatCurrency(sumSubCategoryItems * -1)}
+					</span>{" "}
+					left <br /> From {formatCurrency(data.goalAmount)}
 				</h3>
 			</div>
-			<div><ProgressBar percentage={percentage}/></div>
-            <div className="flex justify-between opacity-70">
-                <span>June 01, 2025</span>
-                <span>June 30, 2025</span>
-            </div>
+			<div>
+				<ProgressBar percentage={percentage} />
+			</div>
+			<div className="text-text flex justify-between opacity-70">
+				<span>June 01, 2025</span>
+				<span>June 30, 2025</span>
+			</div>
 		</div>
 	);
 };

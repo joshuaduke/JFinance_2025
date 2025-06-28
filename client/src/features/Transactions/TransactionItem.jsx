@@ -6,7 +6,7 @@ import { formatCurrency } from "../../helpers/currency";
 const TransactionItem = ({ data }) => {
 	return data.map((element, index) => (
 		//key needs to be changed to ID pulled from DB
-		<div key={index} className=" border-b py-1 px-2 border-gray-300">
+		<div key={index} className="text-text  py-1 px-2 ">
 			<div className="flex justify-between">
 				<div className="flex pr-2">
 					<CategoryIcon category={element.category} />
@@ -22,9 +22,9 @@ const TransactionItem = ({ data }) => {
 
 				<p
 					className="self-center"
-					style={{
-						color: element.cost < 0 ? "#CC0000" : "#108B10",
-					}}
+					// style={{
+					// 	color: element.cost < 0 ? "#CC0000" : "#108B10",
+					// }}
 				>
 					{formatCurrency(element.cost)}
 				</p>

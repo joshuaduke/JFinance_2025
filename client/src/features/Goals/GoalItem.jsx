@@ -12,7 +12,9 @@ const GoalItem = ({ data }) => {
 	// store subcategory type
 	// filter transactions for that type and store in new arr
 	let arrSubCategoryItems = transactions.filter(
-		(item) => item.subCategory === data.subCategory
+		(item) =>
+			item.subCategory ===
+			data.subCategory.find((element) => element === item.subCategory)
 	);
 
 	console.log("Goal Data", arrSubCategoryItems);
@@ -31,7 +33,7 @@ const GoalItem = ({ data }) => {
 	return (
 		<div className="my-3">
 			<div
-				className="flex justify-between 
+				className="flex justify-between my-2
 "
 			>
 				<div className="flex items-center">
@@ -40,23 +42,27 @@ const GoalItem = ({ data }) => {
 						width="24"
 						height="24"
 						viewBox="0 0 24 24"
+						className="fill-text"
 					>
 						<path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91c4.59-1.15 8-5.86 8-10.91V5l-8-3zm3.5 12.09l-1.41 1.41L12 13.42L9.91 15.5L8.5 14.09L10.59 12L8.5 9.91L9.91 8.5L12 10.59l2.09-2.09l1.41 1.41L13.42 12l2.08 2.09z"></path>
 					</svg>
 					<div>
-						<p className="text-xs font-bold sm:text-sm">
+						<p className="text-text text-xs font-bold sm:text-sm">
 							{" "}
 							{data.name.length > 13
 								? `${data.name.substring(0, 13)}...`
 								: data.name}
 						</p>
-						<p className="font-thin" style={{ fontSize: "10px" }}>
+						<p
+							className="text-text font-thin"
+							style={{ fontSize: "10px" }}
+						>
 							{formatTransactionDate(data.startDate)}
 						</p>
 					</div>
 				</div>
 
-				<div className=" self-center">
+				<div className="text-text self-center">
 					<p className="text-sm">{formatCurrency(data.goalAmount)}</p>
 				</div>
 			</div>
@@ -588,86 +594,86 @@ export default GoalItem;
 // 		importance: "Nice To Have",
 // 		account: "TD VISA CREDIT",
 // 	},
-// 	{
-// 		date: "2022-05-20T04:00:00.000Z",
-// 		description: "Credit Card",
-// 		category: "BILLS",
-// 		subCategory: "CREDIT_CARD",
-// 		cost: -7.25,
-// 		endingBalance: -512.7099999999994,
-// 		importance: "Essential",
-// 		account: "TD CHEQUING",
-// 	},
-// 	{
-// 		date: "2022-05-20T04:00:00.000Z",
-// 		description: "Home Depot Paint",
-// 		category: "SHOPPING",
-// 		subCategory: "MISC",
-// 		cost: -175.27,
-// 		endingBalance: -687.9799999999993,
-// 		importance: "Have To Have",
-// 		account: "TD VISA CREDIT",
-// 	},
-// 	{
-// 		date: "2022-05-24T04:00:00.000Z",
-// 		description: "Uber Eats",
-// 		category: "FOOD",
-// 		subCategory: "DELIVERY",
-// 		cost: -33.26,
-// 		endingBalance: -721.2399999999993,
-// 		importance: "Shouldn't Have",
-// 		account: "TD VISA CREDIT",
-// 	},
-// 	{
-// 		date: "2022-05-25T04:00:00.000Z",
-// 		description: "Javaughn",
-// 		category: "GIFT",
-// 		subCategory: "GIFT",
-// 		cost: -300,
-// 		endingBalance: -1021.2399999999993,
-// 		importance: "Nice To Have",
-// 		account: "TD CHEQUING",
-// 	},
-// 	{
-// 		date: "2022-05-25T04:00:00.000Z",
-// 		description: "Justin Guitar",
-// 		category: "SUBSCRIPTION",
-// 		subCategory: "WEBSITE",
-// 		cost: -14.11,
-// 		endingBalance: -1035.3499999999992,
-// 		importance: "Nice To Have",
-// 		account: "TD VISA CREDIT",
-// 	},
-// 	{
-// 		date: "2022-05-26T04:00:00.000Z",
-// 		description: "ICloud",
-// 		category: "BILLS",
-// 		subCategory: "APP",
-// 		cost: -4.51,
-// 		endingBalance: -1039.8599999999992,
-// 		importance: "Essential",
-// 		account: "TD VISA CREDIT",
-// 	},
-// 	{
-// 		date: "2022-05-27T04:00:00.000Z",
-// 		description: "PAYMENT",
-// 		category: "PAYMENT",
-// 		subCategory: "SALARY",
-// 		cost: 1886.89,
-// 		endingBalance: 847.0300000000009,
-// 		importance: "Essential",
-// 		account: "TD CHEQUING",
-// 	},
-// 	{
-// 		date: "2022-05-27T04:00:00.000Z",
-// 		description: "Emergency F",
-// 		category: "SAVINGS",
-// 		subCategory: "EMERGENCY_FUND",
-// 		cost: -20,
-// 		endingBalance: 827.0300000000009,
-// 		importance: "Essential",
-// 		account: "TD CHEQUING",
-// 	},
+	// {
+	// 	date: "2022-05-20T04:00:00.000Z",
+	// 	description: "Credit Card",
+	// 	category: "BILLS",
+	// 	subCategory: "CREDIT_CARD",
+	// 	cost: -7.25,
+	// 	endingBalance: -512.7099999999994,
+	// 	importance: "Essential",
+	// 	account: "TD CHEQUING",
+	// },
+	// {
+	// 	date: "2022-05-20T04:00:00.000Z",
+	// 	description: "Home Depot Paint",
+	// 	category: "SHOPPING",
+	// 	subCategory: "MISC",
+	// 	cost: -175.27,
+	// 	endingBalance: -687.9799999999993,
+	// 	importance: "Have To Have",
+	// 	account: "TD VISA CREDIT",
+	// },
+	// {
+	// 	date: "2022-05-24T04:00:00.000Z",
+	// 	description: "Uber Eats",
+	// 	category: "FOOD",
+	// 	subCategory: "DELIVERY",
+	// 	cost: -33.26,
+	// 	endingBalance: -721.2399999999993,
+	// 	importance: "Shouldn't Have",
+	// 	account: "TD VISA CREDIT",
+	// },
+	// {
+	// 	date: "2022-05-25T04:00:00.000Z",
+	// 	description: "Javaughn",
+	// 	category: "GIFT",
+	// 	subCategory: "GIFT",
+	// 	cost: -300,
+	// 	endingBalance: -1021.2399999999993,
+	// 	importance: "Nice To Have",
+	// 	account: "TD CHEQUING",
+	// },
+	// {
+	// 	date: "2022-05-25T04:00:00.000Z",
+	// 	description: "Justin Guitar",
+	// 	category: "SUBSCRIPTION",
+	// 	subCategory: "WEBSITE",
+	// 	cost: -14.11,
+	// 	endingBalance: -1035.3499999999992,
+	// 	importance: "Nice To Have",
+	// 	account: "TD VISA CREDIT",
+	// },
+	// {
+	// 	date: "2022-05-26T04:00:00.000Z",
+	// 	description: "ICloud",
+	// 	category: "BILLS",
+	// 	subCategory: "APP",
+	// 	cost: -4.51,
+	// 	endingBalance: -1039.8599999999992,
+	// 	importance: "Essential",
+	// 	account: "TD VISA CREDIT",
+	// },
+	// {
+	// 	date: "2022-05-27T04:00:00.000Z",
+	// 	description: "PAYMENT",
+	// 	category: "PAYMENT",
+	// 	subCategory: "SALARY",
+	// 	cost: 1886.89,
+	// 	endingBalance: 847.0300000000009,
+	// 	importance: "Essential",
+	// 	account: "TD CHEQUING",
+	// },
+	// {
+	// 	date: "2022-05-27T04:00:00.000Z",
+	// 	description: "Emergency F",
+	// 	category: "SAVINGS",
+	// 	subCategory: "EMERGENCY_FUND",
+	// 	cost: -20,
+	// 	endingBalance: 827.0300000000009,
+	// 	importance: "Essential",
+	// 	account: "TD CHEQUING",
+	// },
 // 	{
 // 		date: "2022-05-27T04:00:00.000Z",
 // 		description: "Entertainment",
