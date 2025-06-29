@@ -1,7 +1,7 @@
 import BudgetCard from "./BudgetCard";
 import { useEffect, useState } from "react";
 import { getTransactionsByPeriod } from "../../../helpers/dates";
-
+const apiUrl = import.meta.env.VITE_APP_API_URL;
 
 const Budgets = () => {
 	const [budgets, setBudgets] = useState([]);
@@ -11,8 +11,8 @@ const Budgets = () => {
 	useEffect(() => {
 		let { periodStartDate, periodEndDate, dateName } =
 			getTransactionsByPeriod("month");
-		const URL = `http://localhost:3000/api/budgets/${userId}`;
-		const transactionURL = `http://localhost:3000/api/transactions/${userId}/${periodStartDate}/${periodEndDate}`;
+		const URL = `${apiUrl}/api/budgets/${userId}`;
+		const transactionURL = `${apiUrl}/api/transactions/${userId}/${periodStartDate}/${periodEndDate}`;
 
 		async function fetchData() {
 			const [response1, response2] = await Promise.all([

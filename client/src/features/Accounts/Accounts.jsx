@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import AccountCard from "./AccountCard";
 import { Link } from "react-router";
+const apiUrl = import.meta.env.VITE_APP_API_URL;
 
 const Accounts = () => {
     const [accountData, setAccountData] = useState([]);
@@ -9,9 +10,7 @@ const Accounts = () => {
 
     useEffect(() => {
         async function getAccounts() {
-            const response = await fetch(
-                `http://localhost:3000/api/accounts/${userId}`
-            );
+            const response = await fetch(`${apiUrl}/api/accounts/${userId}`);
             const data = await response.json();
 
             setAccountData(data);

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import CategoryIcon from "../../components/CategoryIcon";
 import { formatCurrency } from "../../helpers/currency";
 import { format } from "date-fns";
-
+const apiUrl = import.meta.env.VITE_APP_API_URL;
 
 const TransactionItem = ({ data, collectionData }) => {
 	const [isEdit, setIsEdit] = useState(false);
@@ -43,20 +43,25 @@ const TransactionItem = ({ data, collectionData }) => {
 
     async function updateTransaction(){
         try {
-            fetch(`http://localhost:3000/api/transactions/${data._id}`, {
-                method: 'PUT',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(form)
-            }).then( response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`)
-                }
-                return response.json()
-            }).then(data => {
-				toggleEdit();
-			}).catch(error => console.error("Error:", error));
+            fetch(`${apiUrl}/api/transactions/${data._id}`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(form),
+			})
+				.then((response) => {
+					if (!response.ok) {
+						throw new Error(
+							`HTTP error! status: ${response.status}`
+						);
+					}
+					return response.json();
+				})
+				.then((data) => {
+					toggleEdit();
+				})
+				.catch((error) => console.error("Error:", error));
 
         } catch (error) {
             console.error("Error in updateTransaction()", error)
@@ -65,14 +70,21 @@ const TransactionItem = ({ data, collectionData }) => {
 
     async function deleteTransaction(){
         try {
-            fetch(`http://localhost:3000/api/transactions/${data._id}`, {
-                method: 'DELETE'
-            }).then( response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`)
-                }
-                return response.json()
-            }).then(data => { console.log("Successfully deleted:", data) }).catch(error => console.error("Error:", error));
+            fetch(`${apiUrl}/api/transactions/${data._id}`, {
+				method: "DELETE",
+			})
+				.then((response) => {
+					if (!response.ok) {
+						throw new Error(
+							`HTTP error! status: ${response.status}`
+						);
+					}
+					return response.json();
+				})
+				.then((data) => {
+					console.log("Successfully deleted:", data);
+				})
+				.catch((error) => console.error("Error:", error));
 
         } catch (error) {
             console.error("Error in deleteTransaction()", error)

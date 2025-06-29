@@ -32,6 +32,10 @@ app.use(
 );
 
 //routes
+app.get("/", (req, res) => {
+	res.json("Server start");
+});
+
 app.use("/api/transactions", transactionRoute);
 app.use("/api/goals", goalRoute);
 app.use("/api/budgets", budgetRoute);
@@ -54,9 +58,7 @@ passport.deserializeUser(User.deserializeUser());
 // });
 
 mongoose
-	.connect(
-		`mongodb+srv://admin:${process.env.NODE_MONGODB_PASS}@jfinancedb.7dcdqs7.mongodb.net/Transactions?retryWrites=true&w=majority&appName=jFinanceDB`
-	)
+	.connect(process.env.NODE_MONGODB_PASS)
 	.then(() => {
 		app.listen(PORT, "0.0.0.0", () => {
 			console.log(`Example app listening on port ${PORT}`);

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import GoalItem from "./GoalItem";
+const apiUrl = import.meta.env.VITE_APP_API_URL;
 
 const Goals = () => {
 	const [goals, setGoals] = useState([]);
 	const userID = localStorage.getItem("userid");
 
 	useEffect(() => {
-		const URL = `http://localhost:3000/api/goals/${userID}`;
+		const URL = `${apiUrl}/api/goals/${userID}`;
 		const response = fetch(URL)
 			.then((response) => response.json())
 			.then((data) => {

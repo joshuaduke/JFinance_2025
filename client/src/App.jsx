@@ -12,6 +12,7 @@ import Goals from "./pages/Goals/Goals";
 import Accounts from "./pages/Accounts/Accounts";
 import Transactions from "./pages/Transactions/Transactions";
 import Settings from "./pages/Settings/Settings";
+const apiUrl = import.meta.env.VITE_APP_API_URL;
 
 function App() {
 	const [period, setperiod] = useState("month");
@@ -21,17 +22,12 @@ function App() {
 
 	useEffect(() => {
 		const authenticateUser = async () => {
-			const response = await fetch(
-				"http://localhost:3000/api/auth/profile",
-				{
-					method: "GET",
-					headers: {
-						Authorization: `Bearer ${localStorage.getItem(
-							"token"
-						)}`,
-					},
-				}
-			);
+			const response = await fetch(`${apiUrl}/api/auth/profile`, {
+				method: "GET",
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem("token")}`,
+				},
+			});
 			const data = await response.json();
 			// localStorage.setItem("token", data.token);
 

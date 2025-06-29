@@ -2,6 +2,7 @@ import SavingCard from "./SavingCard";
 import { useContext, useEffect, useState } from "react";
 import { getTransactionsByPeriod } from "../../../helpers/dates";
 import { AppContext } from "../../../components/AppContext";
+const apiUrl = import.meta.env.VITE_APP_API_URL;
 
 const Savings = () => {
 	const [savings, setSavings] = useState([]);
@@ -12,7 +13,7 @@ const Savings = () => {
 	useEffect(() => {
 		// let { periodStartDate, periodEndDate, dateName } =
 		// 	getTransactionsByPeriod("month");
-		const URL = `http://localhost:3000/api/goals/${userId}`;
+		const URL = `${apiUrl}/api/goals/${userId}`;
 		//const transactionURL = `http://localhost:3000/api/transactions/${userId}/${periodStartDate}/${periodEndDate}`;
 
 		async function fetchData() {

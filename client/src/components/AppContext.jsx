@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { createContext, useState } from "react";
 import { getTransactionsByPeriod } from "../helpers/dates";
 import { endOfMonth, startOfMonth } from "date-fns";
+const apiUrl = import.meta.env.VITE_APP_API_URL;
 
 export const AppContext = createContext(null);
 
@@ -28,7 +29,7 @@ export const AppContextProvider = ({ children }) => {
 		setPeriodDateName(dateName);
 
 		//need to store start and end date as state variables so that we can change them
-		const URL = `http://localhost:3000/api/transactions/${authUserId}/${periodStartDate}/${periodEndDate}`;
+		const URL = `${apiUrl}/api/transactions/${authUserId}/${periodStartDate}/${periodEndDate}`;
 		const response = fetch(URL)
 			.then((response) => response.json())
 			.then((data) => {
@@ -45,7 +46,7 @@ export const AppContextProvider = ({ children }) => {
 		setPeriodDateName(dateName);
 
 		//need to store start and end date as state variables so that we can change them
-		const URL = `http://localhost:3000/api/transactions/${authUserId}/${periodStartDate}/${periodEndDate}`;
+		const URL = `${apiUrl}/api/transactions/${authUserId}/${periodStartDate}/${periodEndDate}`;
 		const response = fetch(URL)
 			.then((response) => response.json())
 			.then((data) => {
@@ -55,7 +56,7 @@ export const AppContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		// retrieve user data
-		const userURL = `http://localhost:3000/api/auth/user/${authUserId}`;
+		const userURL = `${apiUrl}/api/auth/user/${authUserId}`;
 		const userResponse = fetch(userURL)
 			.then((userResponse) => userResponse.json())
 			.then((data) => {

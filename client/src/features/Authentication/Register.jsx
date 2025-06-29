@@ -3,6 +3,7 @@ import Image from "../../assets/jFinanceLogo.png";
 import GoogleIcon from "../../assets/google-icon-logo-svgrepo-com.svg";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
+const apiUrl = import.meta.env.VITE_APP_API_URL;
 
 const Register = ({ setIsAuthenticated }) => {
 	const [error, setError] = useState(false);
@@ -20,16 +21,13 @@ const Register = ({ setIsAuthenticated }) => {
 
 		//use formData instead of state in order to create user
 		try {
-			const response = await fetch(
-				"http://localhost:3000/api/auth/register",
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify(user),
-				}
-			);
+			const response = await fetch(`${apiUrl}/api/auth/register`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(user),
+			});
 
 			if (response.status == 200) {
 				setIsAuthenticated(true);
