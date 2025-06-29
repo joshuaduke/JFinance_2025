@@ -8,7 +8,7 @@ import Transactions from "../../features/Transactions/Index";
 import Expenses from "../../features/ExpensesGraph/Expenses";
 import Budget from "../../features/Budget/Budget";
 import Goals from "../../features/Goals/Goals";
-import FooterNavMenu from "../../features/NavMenu/footerNavMenu";
+import FooterNavMenu from "../../features/NavMenu/FooterNavMenu";
 import Accounts from "../../features/Accounts/Accounts";
 
 const Dashboard = () => {
