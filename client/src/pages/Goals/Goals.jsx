@@ -1,4 +1,4 @@
-import FooterNavMenu from "../../features/NavMenu/footerNaVMenu";
+import FooterNavMenu from "../../features/NavMenu/FooterNavMenu";
 import Header from "../../features/Header/Header";
 import Budgets from "./Budgets/Budgets";
 import Savings from "./Savings/Savings";
