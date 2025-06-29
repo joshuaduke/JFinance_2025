@@ -106,8 +106,6 @@ function getTransactionsByYear() {
 		}
 	});
 
-	console.log("Year Transactions", yearTransactions);
-
 	return yearTransactions;
 }
 
@@ -131,7 +129,6 @@ export function getPreviousPeriod(period, startDate, endDate) {
 			break;
 		case "month":
 			// get current value of startdate and end date
-			// console.log("Start", start);
 			// subtract 1 month
 			// set new value of start date and end date
 			newPeriodObj.newStart = format(subMonths(newDate, 1), "yyyy-MM-dd");
@@ -153,10 +150,6 @@ export function getNextPeriod(period, startDate, endDate) {
 	const newDate = parseISO(startDate);
 	const currentDate = new Date();
 
-	console.log("Current Date vs New Date");
-	console.log("New Date", newDate);
-	console.log("Current Date", currentDate);
-
 	if (currentDate == newDate) {
 		return false;
 	}
@@ -174,7 +167,7 @@ export function getNextPeriod(period, startDate, endDate) {
 			break;
 		case "month":
 			// get current value of startdate and end date
-			// console.log("Start", start);
+
 			// subtract 1 month
 			// set new value of start date and end date
 			if (newDate.getMonth() == currentDate.getMonth()) {

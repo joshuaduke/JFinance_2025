@@ -6,7 +6,6 @@ import { Link } from "react-router";
 const Accounts = () => {
     const [accountData, setAccountData] = useState([]);
     const userId = localStorage.getItem("userid");
-    console.log("Account user id", userId);
 
     useEffect(() => {
         async function getAccounts() {

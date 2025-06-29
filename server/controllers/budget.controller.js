@@ -3,9 +3,7 @@ const Budget = require("../models/budgets.model");
 const getBudgets = async (req, res) => {
 	try {
 		const userId = req.params.userid;
-		console.log("User id:", userId);
-		
-		const budgets = await Budget.find({ userID : userId });
+		const budgets = await Budget.find({ userID: userId });
 		// const budgets = await Budget.find({});
 		res.status(200).json(budgets);
 	} catch (error) {
@@ -26,8 +24,6 @@ const getBudgetById = async (req, res) => {
 
 const createBudget = async (req, res) => {
 	try {
-		console.log(req.body);
-
 		const budget = await Budget.create(req.body);
 		res.status(200).json(budget);
 	} catch (error) {

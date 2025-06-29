@@ -5,9 +5,7 @@ import { AppContext } from "../../components/AppContext";
 const Transactions = () => {
 	// const [data, setdata] = useState(transactionData);
 	const [filteredDates, setFilteredDates] = useState([]);
-	const { transactions, setTransactions } = useContext(AppContext);
-	console.log("Transactions from Context", transactions);
-	
+	const { transactions, setTransactions } = useContext(AppContext);	
 
 	useEffect(() => {
 		let dateArray = transactions?.map((value) => value.date);

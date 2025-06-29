@@ -16,7 +16,6 @@ export const AppContextProvider = ({ children }) => {
 		localStorage.getItem("userid")
 	);
 	const [userData, setUserData] = useState(null);
-	console.log("User Data", authUserId);
 
 	// this use effect only triggers when dependencies change
 	// using 2 use effects to prevent infinite loop that was occuring due to start date change

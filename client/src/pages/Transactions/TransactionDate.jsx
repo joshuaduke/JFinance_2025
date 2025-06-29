@@ -13,9 +13,6 @@ const TransactionDate = ({ date, data, collectionData }) => {
 
 	let dateCashFlow = calculateTransactionsByDate(currentTransactions);
 
-	console.log("Collection Data", collectionData);
-	
-
 	return (
 		<div className="my-4 bg-secondary  shadow-md shadow-black rounded-md md:rounded-lg">
 			<div className="text-accent flex justify-between p-4 ">

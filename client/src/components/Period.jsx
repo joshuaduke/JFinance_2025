@@ -5,12 +5,9 @@ const Period = () => {
     const {period, setPeriod} = useContext(AppContext)
     // const [period, setPeriod] = useState("");
 
-    const handleChange = event => {
-        console.log("Clicked", event.target);
-        
-        setPeriod(event.target.value);
-
-    }
+    const handleChange = (event) => {
+		setPeriod(event.target.value);
+	};
 	return (
 		<div className="text-center">
 			<h3 className="text-text text-xl">Period</h3>

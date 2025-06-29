@@ -8,15 +8,21 @@ const AccountCard = ( { data} ) => {
     const {transactions} = useContext(AppContext);
 
     const filteredTransactions = transactions.filter((item) => item.account === data.name)
-    const accountBalance = filteredTransactions.reduce((acc, curr) => acc + curr.cost, data.initialBalance)
-    console.log("accountBalance", accountBalance);
-    
+    const accountBalance = filteredTransactions.reduce(
+		(acc, curr) => acc + curr.cost,
+		data.initialBalance
+	);    
 
 	return (
-		<div className="bg-secondary text-text p-2 rounded shadow-md ">
+		<div
+			key={data._id}
+			className="bg-secondary text-text p-2 rounded shadow-md "
+		>
 			<p>{data.name}</p>
 			<p className="text-xs">{data.bank}</p>
-			<p className="text-2xl text-accent">{formatCurrency(accountBalance)}</p>
+			<p className="text-2xl text-accent">
+				{formatCurrency(accountBalance)}
+			</p>
 		</div>
 	);
 };

@@ -23,8 +23,6 @@ const getGoalById = async (req, res) => {
 
 const createGoal = async (req, res) => {
 	try {
-		console.log(req.body);
-
 		const goal = await Goal.create(req.body);
 		res.status(200).json(goal);
 	} catch (error) {

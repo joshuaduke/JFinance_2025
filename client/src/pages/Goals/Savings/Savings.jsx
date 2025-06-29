@@ -19,7 +19,6 @@ const Savings = () => {
 			const response = await fetch(URL);
 			const data = await response.json();
 
-			console.log("Savings Data", data);
 			setSavings(data);
 		}
 

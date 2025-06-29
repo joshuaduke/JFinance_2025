@@ -6,16 +6,13 @@ const jwtSecret = process.env.JWT_SECRET;
 
 const authenticateUser = async (req, res) => {
 	try {
-		console.log("Authenticating user ", req.firstName);
-
-		res.status(200).json(
-			{ 
-				message: 'You are authenticated!', 
-				user: req.userId, 
-				email: req.email,
-				firstName: req.firstName,
-				lastName: req.lastName 
-			});
+		res.status(200).json({
+			message: "You are authenticated!",
+			user: req.userId,
+			email: req.email,
+			firstName: req.firstName,
+			lastName: req.lastName,
+		});
 		//res.status(200).json({ message: "You are authenticated!" });
 	} catch (error) {
 		res.status(500).json({ message: "Error authenticating user", error });
@@ -62,8 +59,6 @@ const logout = async (req, res) => {
 
 const createUser = async (req, res) => {
 	try {
-		console.log(req.body);
-
 		const newUser = new User({
 			// username: req.body.username,
 			username: req.body.username,
@@ -97,12 +92,10 @@ const createUser = async (req, res) => {
 const getUser = async (req, res) => {
 	try {
 		const userId = req.params.userId;
-		console.log("Searching for ID:", userId);
+		
 		
 		const user = await User.findById(userId);
 		if (user) {
-			console.log("User found:", user);
-
 			//passport.authenticate("local")(req, res, () => {
 			//return res.status(200).json(user)
 			//res.redirect("/"); // Or send a success response

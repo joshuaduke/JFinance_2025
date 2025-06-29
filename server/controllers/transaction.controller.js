@@ -4,8 +4,6 @@ const getTransactions = async (req, res) => {
 	try {
 		const userId = req.params.id;
 		if (req.params.startDate) {
-			console.log("Params triggered", req.params.startDate);
-			console.log("ID", req.params.id);
 			const startDate = req.params.startDate;
 			const endDate = req.params.endDate;
 			//need to convert to ISO 8601 since the data I used from my google sheets file uses ISO 8601 date formats
@@ -49,8 +47,6 @@ const getTransactionById = async (req, res) => {
 
 const createTransaction = async (req, res) => {
 	try {
-		console.log(req.body);
-
 		const transaction = await Transaction.create(req.body);
 		res.status(200).json(transaction);
 	} catch (error) {

@@ -19,14 +19,8 @@ function App() {
 	const [userId, setUserId] = useState("");
 	let { authUserId, authSetUserId } = useContext(AppContext);
 
-	console.log("Authenticated?", isAuthenticated);
-
 	useEffect(() => {
-		console.log("Useeffect triggered");
-
 		const authenticateUser = async () => {
-			console.log("Authenticate user triggered");
-
 			const response = await fetch(
 				"http://localhost:3000/api/auth/profile",
 				{
@@ -40,8 +34,7 @@ function App() {
 			);
 			const data = await response.json();
 			// localStorage.setItem("token", data.token);
-			console.log("Response", data);
-			console.log("Response", data.email);
+
 			if (response.status != 401) {
 				setIsAuthenticated(true);
 				authSetUserId(localStorage.getItem("userid"));
@@ -49,8 +42,6 @@ function App() {
 		};
 		authenticateUser();
 	}, [userId]);
-
-	console.log("User ID ", userId);
 
 	return (
 		<BrowserRouter>

@@ -4,17 +4,11 @@ import { useNavigate } from "react-router";
 const Logout = () => {
     const navigate = useNavigate();
     //server logout not necessary
-    function handleLogout(){
-        // try {
-        //     await fetch("http://localhost:3000/api/auth/logout")
-        // } catch (error) {
-        //     console.log(error);
-            
-        // }
-        localStorage.removeItem('token');
-        localStorage.removeItem("userid");
-        window.location.reload();
-    }
+    function handleLogout() {
+		localStorage.removeItem("token");
+		localStorage.removeItem("userid");
+		window.location.reload();
+	}
 
 	return (
 		<button

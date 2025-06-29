@@ -10,12 +10,7 @@ const Register = ({ setIsAuthenticated }) => {
 	const navigate = useNavigate();
 
 	async function handleSubmit(formData) {
-		console.log("Triggered");
-		console.log(
-			"Form Data",
-			formData.get("email"),
-			formData.get("password")
-		);
+
 		const user = {
 			username: formData.get("email"),
 			password: formData.get("password"),
@@ -35,7 +30,7 @@ const Register = ({ setIsAuthenticated }) => {
 					body: JSON.stringify(user),
 				}
 			);
-			console.log(response.status);
+
 			if (response.status == 200) {
 				setIsAuthenticated(true);
 				navigate("/");

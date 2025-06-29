@@ -6,25 +6,24 @@ import { format } from "date-fns";
 
 const TransactionItem = ({ data, collectionData }) => {
 	const [isEdit, setIsEdit] = useState(false);
-	console.log("Data", data);
-	console.log("Collections", collectionData);
+
 	const { accountsData, categoryData } = collectionData;
-	console.log("Accounts Data", accountsData);
+	
 
     const [form, setForm] = useState({
-        account: data.account,
-        name: data.name,
-        category: data.category,
-        importance: data.importance,
-        date: format(data.date, "yyyy-MM-dd"),
-        cost: data.cost,
-        description: data?.description
-    })
+		account: data.account,
+		name: data.name,
+		category: data.category,
+		importance: data.importance,
+		date: format(data.date, "yyyy-MM-dd"),
+		cost: data.cost,
+		description: data?.description,
+	});
 
 	function handleChange(e) {
-        console.log(`name: ${e.target.name} - value : ${e.target.value}`)
-        setForm({...form, [e.target.name]: e.target.value})
-    }
+		// console.log(`name: ${e.target.name} - value : ${e.target.value}`)
+		setForm({ ...form, [e.target.name]: e.target.value });
+	}
 
 	function toggleEdit() {
 		setIsEdit(!isEdit);
@@ -55,10 +54,9 @@ const TransactionItem = ({ data, collectionData }) => {
                     throw new Error(`HTTP error! status: ${response.status}`)
                 }
                 return response.json()
-            }).then(data => { 
-                console.log("Success:", data)
-                toggleEdit();
-            }).catch(error => console.error("Error:", error));
+            }).then(data => {
+				toggleEdit();
+			}).catch(error => console.error("Error:", error));
 
         } catch (error) {
             console.error("Error in updateTransaction()", error)

@@ -23,8 +23,6 @@ const Budgets = () => {
 				response1.json(),
 				response2.json(),
 			]);
-			console.log("Budget Data", data1);
-			console.log("Transactions Data", data2);
 			setBudgets(data1);
 			setTransactionsByMonth(data2);
 		}

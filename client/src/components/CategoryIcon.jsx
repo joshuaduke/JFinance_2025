@@ -1,14 +1,10 @@
 import { myIcons } from "../assets/CategoryIcons";
 
 function CategoryIcon({ category }) {
-	// console.log('Category Prop', category);
 	let componentCategory = getCategory(category);
-
-	// console.log("componentCategory", componentCategory);
 
 	function getCategory(category) {
 		let categoryObj = myIcons.find((x) => x.name === category);
-		// console.log('categoryObj', categoryObj.path);
 
 		return categoryObj;
 	}

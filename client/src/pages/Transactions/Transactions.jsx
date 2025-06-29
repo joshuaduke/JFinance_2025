@@ -4,6 +4,8 @@ import { useState, useContext, useEffect } from "react";
 import TransactionDate from "./TransactionDate";
 import Header from "../../features/Header/Header";
 import { getAccounts, getCategories } from "../../helpers/getters";
+import { Link } from "react-router";
+// import AddIcon from "@mui/icons-material/Add";
 
 const Transactions = () => {
 	const [filteredDates, setFilteredDates] = useState([]);
@@ -62,8 +64,6 @@ const Transactions = () => {
 		importance: [{ id: 123 }, { id: 123 }],
 	};
 
-	console.log("Collection Data", collectionData);
-
 	return (
 		<section className="mb-18 sm:mx-auto lg:w-11/12">
 			<Header />
@@ -76,6 +76,13 @@ const Transactions = () => {
 					<h3 className="text-text text-2xl px-4 py-2 ">
 						Transactions
 					</h3>
+					<Link
+						to="/"
+						className="my-4 bg-secondary text-accent text-center py-4 block shadow-sm shadow-black rounded-md md:rounded-lg"
+					>
+						Add New Transaction
+					</Link>
+
 					{/* component for transaction */}
 					{filteredDates.map((date, index) => (
 						<TransactionDate

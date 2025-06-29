@@ -6,15 +6,6 @@ const Budget = () => {
 	const [budgets, setBudgets] = useState([]);
 	const [transactionsByMonth, setTransactionsByMonth] = useState([]);
 	const userId = localStorage.getItem("userid");
-	// useEffect(() => {
-	// 	const URL = "http://localhost:3000/api/budgets";
-	// 	const response = fetch(URL)
-	// 		.then((response) => response.json())
-	// 		.then((data) => {
-	// 			//console.log("Response", data);
-	// 			setBudgets(data);
-	// 		});
-	// }, []);
 
 	useEffect(() => {
 		let { periodStartDate, periodEndDate, dateName } =
@@ -31,17 +22,13 @@ const Budget = () => {
 				response1.json(),
 				response2.json(),
 			]);
-			console.log("Budget Data", data1);
-			console.log("Transactions Data", data2);
+
 			setBudgets(data1);
 			setTransactionsByMonth(data2);
 		}
 
 		fetchData();
 	}, []);
-
-	// console.log("Budget Data", budgets);
-	// console.log("Transactions Data", transactionsByMonth);
 
 	return (
 		<div className="col-span-12 sm:col-span-3 sm:row-span-6 shadow-lg rounded-2xl overflow-auto pb-4 bg-white">

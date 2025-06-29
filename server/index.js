@@ -58,7 +58,6 @@ mongoose
 		`mongodb+srv://admin:${process.env.NODE_MONGODB_PASS}@jfinancedb.7dcdqs7.mongodb.net/Transactions?retryWrites=true&w=majority&appName=jFinanceDB`
 	)
 	.then(() => {
-		console.log("Connected to Database");
 		app.listen(PORT, "0.0.0.0", () => {
 			console.log(`Example app listening on port ${PORT}`);
 		});

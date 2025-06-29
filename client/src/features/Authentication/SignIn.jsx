@@ -7,9 +7,6 @@ const SignIn = ({ setIsAuthenticated, setUserId }) => {
 	let navigate = useNavigate();
 
 	async function handleSubmit(formData) {
-		console.log("Triggered");
-		console.log("Form Data", formData.get("email"));
-
 		const user = {
 			username: formData.get("email"),
 			password: formData.get("password"),
@@ -28,7 +25,7 @@ const SignIn = ({ setIsAuthenticated, setUserId }) => {
 			const data = await response.json();
 			localStorage.setItem("token", data.token);
 			localStorage.setItem("userid", data.userId);
-			console.log("Response", data);
+
 			if (response.status == 200) {
 				setIsAuthenticated(true);
 				setUserId(data.userId);
