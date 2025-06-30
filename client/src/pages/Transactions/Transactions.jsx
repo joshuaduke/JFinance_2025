@@ -1,4 +1,4 @@
-import FooterNavMenu from "../../features/NavMenu/footerNaVMenu";
+import FooterNavMenu from "../../features/NavMenu/FooterNavMenu";
 import { AppContext } from "../../components/AppContext";
 import { useState, useContext, useEffect } from "react";
 import TransactionDate from "./TransactionDate";
@@ -111,7 +111,7 @@ const transactionData = [
 		endingBalance: 149.74,
 		importance: "Essential",
 		account: "TD CHEQUING",
-    description: "Testing hello world"
+		description: "Testing hello world",
 	},
 	{
 		date: "2022-04-04T04:00:00.000Z",
@@ -122,7 +122,7 @@ const transactionData = [
 		endingBalance: 139.74,
 		importance: "Essential",
 		account: "TD CHEQUING",
-    description: "Testing hello world"
+		description: "Testing hello world",
 	},
 	{
 		date: "2022-04-04T04:00:00.000Z",
@@ -133,7 +133,7 @@ const transactionData = [
 		endingBalance: 105.85000000000001,
 		importance: "Essential",
 		account: "TD CHEQUING",
-    description: "Testing hello world"
+		description: "Testing hello world",
 	},
 	{
 		date: "2022-04-04T04:00:00.000Z",
@@ -144,7 +144,7 @@ const transactionData = [
 		endingBalance: 49.25000000000001,
 		importance: "Essential",
 		account: "TD VISA CREDIT",
-    description: "Testing hello world"
+		description: "Testing hello world",
 	},
 	{
 		date: "2022-04-09T04:00:00.000Z",
@@ -155,7 +155,7 @@ const transactionData = [
 		endingBalance: 33.13000000000001,
 		importance: "Shouldn't Have",
 		account: "TD VISA CREDIT",
-    description: "Testing hello world"
+		description: "Testing hello world",
 	},
 	{
 		date: "2022-04-13T04:00:00.000Z",
@@ -166,7 +166,7 @@ const transactionData = [
 		endingBalance: 147.13,
 		importance: "Essential",
 		account: "TD CHEQUING",
-    description: "Testing hello world"
+		description: "Testing hello world",
 	},
 	{
 		date: "2022-04-13T04:00:00.000Z",
@@ -177,7 +177,7 @@ const transactionData = [
 		endingBalance: 129.65,
 		importance: "Shouldn't Have",
 		account: "TD VISA CREDIT",
-    description: "Testing hello world"
+		description: "Testing hello world",
 	},
 	// {
 	// 	date: "2022-04-14T04:00:00.000Z",
