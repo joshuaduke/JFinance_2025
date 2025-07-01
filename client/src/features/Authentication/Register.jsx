@@ -42,7 +42,7 @@ const Register = ({ setIsAuthenticated }) => {
 			<div className="h-screen relative sm:mx-auto lg:w-[35%] 2xl:w-[20%] lg:place-content-center xl:w-[30%]">
 				<div>
 					<img
-						className="w-full h-[300px] lg:mx-auto lg:rounded-4xl lg:w-[200px] lg:h-[200px] lg:mb-6"
+						className="w-full h-[300px] lg:mx-auto lg:rounded-4xl lg:w-[300px] lg:h-[200px] lg:mb-6"
 						src={Image}
 						alt=""
 					/>
