@@ -12,6 +12,8 @@ import Goals from "./pages/Goals/Goals";
 import Accounts from "./pages/Accounts/Accounts";
 import Transactions from "./pages/Transactions/Transactions";
 import Settings from "./pages/Settings/Settings";
+import NewTransaction from "./pages/Transactions/NewTransaction";
+
 const apiUrl = import.meta.env.VITE_APP_API_URL;
 
 function App() {
@@ -73,6 +75,7 @@ function App() {
 					<Route path="/expenses" element={<Transactions />} />
 					<Route path="/accounts" element={<Accounts />} />
 					<Route path="/settings" element={<Settings />} />
+					<Route path="/expenses/new" element={<NewTransaction />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

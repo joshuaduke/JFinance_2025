@@ -20,6 +20,6 @@ router.post("/", createTransaction);
 
 router.put("/:id", updateTransaction);
 
-router.delete(":id", deleteTransaction);
+router.delete("/:id", deleteTransaction);
 
 module.exports = router;

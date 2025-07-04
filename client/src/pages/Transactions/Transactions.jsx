@@ -77,7 +77,7 @@ const Transactions = () => {
 						Transactions
 					</h3>
 					<Link
-						to="/"
+						to="/expenses/new"
 						className="my-4 bg-secondary text-accent text-center py-4 block shadow-sm shadow-black rounded-md md:rounded-lg"
 					>
 						Add New Transaction

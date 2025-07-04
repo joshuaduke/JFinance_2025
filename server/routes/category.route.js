@@ -9,7 +9,7 @@ const {
 //optional parameters
 
 // router.get("/{:startDate}{/:endDate}", getTransactions);
-router.get("/", getCategories);
+router.get("/:userid", getCategories);
 
 router.post("/", createCategory);
 
