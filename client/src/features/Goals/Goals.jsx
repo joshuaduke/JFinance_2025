@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import GoalItem from "./GoalItem";
+import { getAllTransactions } from "../../helpers/getters";
 const apiUrl = import.meta.env.VITE_APP_API_URL;
+// const authUserId = localStorage.getItem("userid");
 
 const Goals = () => {
 	const [goals, setGoals] = useState([]);
 	const userID = localStorage.getItem("userid");
+	const [transactionData, setTransactionData] = useState([]);
 
 	useEffect(() => {
 		const URL = `${apiUrl}/api/goals/${userID}`;
@@ -13,6 +16,17 @@ const Goals = () => {
 			.then((data) => {
 				setGoals(data);
 			});
+
+		try {
+			async function getTransactionData() {
+				const res = await getAllTransactions(userID);
+				setTransactionData(res);
+			}
+
+			getTransactionData();
+		} catch (error) {
+			console.error("Error in Goals use effect", error);
+		}
 	}, []);
 
 	return (
@@ -21,7 +35,11 @@ const Goals = () => {
 
 			<div className="bg-secondary rounded-lg px-2 py-2 ">
 				{goals.map((data, index) => (
-					<GoalItem key={index} data={data} />
+					<GoalItem
+						key={index}
+						data={data}
+						transactions={transactionData}
+					/>
 				))}
 			</div>
 		</div>

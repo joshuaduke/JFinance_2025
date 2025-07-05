@@ -25,6 +25,17 @@ export async function getCategories(authUserId) {
 	}
 }
 
+export async function getAllTransactions(authUserId) {
+	try {
+		const URL = `${apiUrl}/api/transactions/${authUserId}/`;
+		const response = await fetch(URL);
+		const data = await response.json();
+
+		return data;
+	} catch (error) {
+		console.error(error);
+	}
+}
 // export function getSubCategories(categoryData, category) {
 // 	let savingsArr = categoryData?.find((element) => element.name === category);
 

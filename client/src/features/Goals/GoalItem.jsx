@@ -5,8 +5,8 @@ import { formatCurrency } from "../../helpers/currency";
 import { AppContext } from "../../components/AppContext";
 import { useContext } from "react";
 
-const GoalItem = ({ data }) => {
-	const { transactions, setTransactions } = useContext(AppContext);
+const GoalItem = ({ data, transactions }) => {
+	// const { transactions, setTransactions } = useContext(AppContext);
 
 	let percentage = 0;
 	// store subcategory type
