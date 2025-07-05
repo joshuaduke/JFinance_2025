@@ -5,6 +5,7 @@ import TransactionDate from "./TransactionDate";
 import Header from "../../features/Header/Header";
 import { getAccounts, getCategories } from "../../helpers/getters";
 import { Link } from "react-router";
+const authUserId = localStorage.getItem("userid");
 // import AddIcon from "@mui/icons-material/Add";
 
 const Transactions = () => {
@@ -40,14 +41,14 @@ const Transactions = () => {
 
 	useEffect(() => {
 		try {
-			getAccounts().then((result) => {
+			getAccounts(authUserId).then((result) => {
 				setCollectionData((prevCollectionData) => ({
 					...prevCollectionData,
 					accountsData: result,
 				}));
 			});
 
-			getCategories().then((result) => {
+			getCategories(authUserId).then((result) => {
 				setCollectionData((prevCollectionData) => ({
 					...prevCollectionData,
 					categoryData: result,

@@ -13,11 +13,11 @@ const NewTransaction = () => {
     const navigate = useNavigate()
 	const { setTransactions } = useContext(AppContext);
 	const [accountData, setAccountData] = useState([]);
-	const [categoryData, setCategoryData] = useState(null);
+	const [categoryData, setCategoryData] = useState([]);
 	const [subCategoryData, setSubCategoryData] = useState(null);
 	const authUserId = localStorage.getItem("userid");
 	const [form, setForm] = useState({
-        userID: authUserId,
+		userID: authUserId,
 		name: "",
 		description: "",
 		category: "",
@@ -28,26 +28,41 @@ const NewTransaction = () => {
 		date: "",
 	});
 
-	useEffect(() => {
-		try {
-			getAccounts().then((result) => {
-				setAccountData(result);
-			});
+	console.log("UseriD", authUserId);
 
-			getCategories().then((result) => {
-				setCategoryData(result);
-			});
-		} catch (error) {
-			console.error(
-				"Error in retrieving collection data for new transaction",
-				error
-			);
+	useEffect(() => {
+		async function fetchData() {
+			try {
+				const accounts = await getAccounts(authUserId);
+
+				setAccountData(accounts);
+				const categories = await getCategories(authUserId);
+
+				setCategoryData(categories);
+			} catch (error) {
+				console.error(
+					"Error in retrieving collection data for new transaction",
+					error
+				);
+			}
 		}
+
+		fetchData();
 	}, []);
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		console.log("Form Data", form);
+
+		let updatedForm = { ...form };
+
+		if (updatedForm.category !== "PAYMENT") {
+			updatedForm.cost = -Math.abs(Number(updatedForm.cost));
+			console.log("Not a payment. Cost adjusted:", updatedForm.cost);
+		} else {
+			updatedForm.cost = Math.abs(Number(updatedForm.cost));
+		}
+
+		console.log("Submitting Form Data", updatedForm);
 
 		try {
 			fetch(`${apiUrl}/api/transactions`, {
@@ -55,7 +70,7 @@ const NewTransaction = () => {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(form),
+				body: JSON.stringify(updatedForm),
 			})
 				.then((response) => {
 					if (!response.ok) {
@@ -64,21 +79,22 @@ const NewTransaction = () => {
 						);
 					}
 					return response.json();
-				}).then((data) => {
-
-					// retrieve list of transactions for this month
-					const {periodStartDate, periodEndDate, dateName} = getTransactionsByPeriod("month", null, null);
+				})
+				.then((data) => {
+					// retrieve list of transactions for this month and update context transactions so that state changes are reflected on the page
+					const { periodStartDate, periodEndDate, dateName } =
+						getTransactionsByPeriod("month", null, null);
 					const URL = `${apiUrl}/api/transactions/${authUserId}/${periodStartDate}/${periodEndDate}`;
 					fetch(URL)
 						.then((response) => response.json())
 						.then((data) => {
 							setTransactions(data);
-							navigate("/");
-					});
-					
+							navigate("/expenses");
+						});
 				})
-				.catch((error) => console.error("Add new transaction Error:", error));
-
+				.catch((error) =>
+					console.error("Add new transaction Error:", error)
+				);
 		} catch (error) {
 			console.error("Error in new Transaction handlesubmit()", error);
 		}
@@ -94,7 +110,6 @@ const NewTransaction = () => {
 		}
 
 		if ([e.target.name] == "cost") {
-			
 		}
 
 		setForm({ ...form, [e.target.name]: e.target.value });
@@ -234,10 +249,10 @@ const NewTransaction = () => {
 					<input
 						className="bg-blank w-full border border-text shadow-md my-2 rounded-md p-2"
 						placeholder="0.00"
-						type="text"
+						type="number"
 						name="cost"
-                        value={form.cost}
-                        onChange={handleChange}
+						value={form.cost}
+						onChange={handleChange}
 					/>
 
 					<label

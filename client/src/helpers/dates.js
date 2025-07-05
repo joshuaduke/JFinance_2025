@@ -16,11 +16,13 @@ import {
 	subWeeks,
 	addWeeks,
 	addYears,
+	addDays,
 } from "date-fns";
 
 export function formatTransactionDate(strDate) {
-	//conver ISO 8610 to Apr 1, YYYY
-	return format(parseISO(strDate), "PP");
+	//conver ISO 8601 to Apr 1, YYYY
+	const ISODate = addDays(parseISO(strDate), 1);
+	return format(ISODate, "PP");
 }
 
 export function getFormattedCurrentDate() {

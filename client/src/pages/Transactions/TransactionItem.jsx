@@ -1,27 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import CategoryIcon from "../../components/CategoryIcon";
 import { formatCurrency } from "../../helpers/currency";
-import { format } from "date-fns";
+import { addDays, format } from "date-fns";
+import { getTransactionsByPeriod } from "../../helpers/dates";
+import { AppContext } from "../../components/AppContext";
+import { useNavigate } from "react-router";
+// import { getSubCategories } from "../../helpers/getters";
+
 const apiUrl = import.meta.env.VITE_APP_API_URL;
+const authUserId = localStorage.getItem("userid");
 
 const TransactionItem = ({ data, collectionData }) => {
+	console.log("Transaction item data", data);
+	const navigate = useNavigate();
 	const [isEdit, setIsEdit] = useState(false);
-
+	const { setTransactions } = useContext(AppContext);
 	const { accountsData, categoryData } = collectionData;
-	
+	const [subCategoryData, setSubCategoryData] = useState(null);
 
-    const [form, setForm] = useState({
+	const [form, setForm] = useState({
 		account: data.account,
 		name: data.name,
 		category: data.category,
+		subCategory: data.subCategory,
 		importance: data.importance,
-		date: format(data.date, "yyyy-MM-dd"),
+		date: format(addDays(data.date, 1), "yyyy-MM-dd"),
 		cost: data.cost,
 		description: data?.description,
 	});
 
 	function handleChange(e) {
 		// console.log(`name: ${e.target.name} - value : ${e.target.value}`)
+		if ([e.target.name] == "category") {
+			let categoryType = e.target.value;
+			let savingsArr = categoryData.find(
+				(element) => element.name === categoryType
+			);
+			setSubCategoryData(savingsArr.subCategory);
+		}
+
 		setForm({ ...form, [e.target.name]: e.target.value });
 	}
 
@@ -29,26 +46,34 @@ const TransactionItem = ({ data, collectionData }) => {
 		setIsEdit(!isEdit);
 	}
 
-    function handleSubmit(e){
-        e.preventDefault();
-        const submitter = e.nativeEvent.submitter;
+	function handleSubmit(e) {
+		e.preventDefault();
+		const submitter = e.nativeEvent.submitter;
 
-        if(submitter && submitter.name === "save"){
-            updateTransaction();
-        } else if (submitter && submitter.name === "delete"){
-            deleteTransaction();
-            
-        }
-    }
+		if (submitter && submitter.name === "save") {
+			updateTransaction();
+		} else if (submitter && submitter.name === "delete") {
+			deleteTransaction();
+		}
+	}
 
-    async function updateTransaction(){
-        try {
-            fetch(`${apiUrl}/api/transactions/${data._id}`, {
+	async function updateTransaction() {
+		let updatedForm = { ...form };
+		// ensure that the cost remains negative
+		if (updatedForm.category !== "PAYMENT") {
+			updatedForm.cost = -Math.abs(Number(updatedForm.cost));
+			console.log("Not a payment. Cost adjusted:", updatedForm.cost);
+		} else {
+			updatedForm.cost = Math.abs(Number(updatedForm.cost));
+		}
+
+		try {
+			fetch(`${apiUrl}/api/transactions/${data._id}`, {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(form),
+				body: JSON.stringify(updatedForm),
 			})
 				.then((response) => {
 					if (!response.ok) {
@@ -59,18 +84,28 @@ const TransactionItem = ({ data, collectionData }) => {
 					return response.json();
 				})
 				.then((data) => {
-					toggleEdit();
+					console.log("Successfully deleted:", data);
+					// retrieve list of transactions for this month
+					const { periodStartDate, periodEndDate, dateName } =
+						getTransactionsByPeriod("month", null, null);
+					const URL = `${apiUrl}/api/transactions/${authUserId}/${periodStartDate}/${periodEndDate}`;
+					fetch(URL)
+						.then((response) => response.json())
+						.then((data) => {
+							setTransactions(data);
+							toggleEdit();
+							navigate("/expenses");
+						});
 				})
 				.catch((error) => console.error("Error:", error));
+		} catch (error) {
+			console.error("Error in updateTransaction()", error);
+		}
+	}
 
-        } catch (error) {
-            console.error("Error in updateTransaction()", error)
-        }
-    }
-
-    async function deleteTransaction(){
-        try {
-            fetch(`${apiUrl}/api/transactions/${data._id}`, {
+	async function deleteTransaction() {
+		try {
+			fetch(`${apiUrl}/api/transactions/${data._id}`, {
 				method: "DELETE",
 			})
 				.then((response) => {
@@ -83,14 +118,22 @@ const TransactionItem = ({ data, collectionData }) => {
 				})
 				.then((data) => {
 					console.log("Successfully deleted:", data);
+					// retrieve list of transactions for this month
+					const { periodStartDate, periodEndDate, dateName } =
+						getTransactionsByPeriod("month", null, null);
+					const URL = `${apiUrl}/api/transactions/${authUserId}/${periodStartDate}/${periodEndDate}`;
+					fetch(URL)
+						.then((response) => response.json())
+						.then((data) => {
+							setTransactions(data);
+							// navigate("/expenses");
+						});
 				})
 				.catch((error) => console.error("Error:", error));
-
-        } catch (error) {
-            console.error("Error in deleteTransaction()", error)
-        }
-    }
-
+		} catch (error) {
+			console.error("Error in deleteTransaction()", error);
+		}
+	}
 
 	return (
 		<>
@@ -127,9 +170,9 @@ const TransactionItem = ({ data, collectionData }) => {
 				</div>
 			) : (
 				<div className="py-2 px-2">
-					<form onSubmit={handleSubmit}>
-						<div className="flex justify-between">
-							<div className="flex flex-col">
+					<form onSubmit={handleSubmit} id="updateTransactions">
+						<div className="sm:grid sm:grid-cols-3 sm:gap-2 2xl:flex">
+							<div className="flex flex-col ">
 								<label
 									htmlFor="category"
 									className="text-accent opacity-70 text-sm"
@@ -165,20 +208,18 @@ const TransactionItem = ({ data, collectionData }) => {
 									className="text-text border border-gray-300 rounded-sm py-3 px-2"
 									name="subCategory"
 									id="subCategory"
-									value={form.category}
+									value={form.subCategory}
 									onChange={handleChange}
 								>
 									<option>-- Select One --</option>
-									{categoryData?.map((category) => (
-										<option
-											key={category._id}
-											value={category.name}
-										>
-											{category.name}
+									{subCategoryData?.map((category) => (
+										<option value={category}>
+											{category}
 										</option>
 									))}
 								</select>
 							</div>
+
 							<div className="flex flex-col">
 								<label
 									htmlFor="date"

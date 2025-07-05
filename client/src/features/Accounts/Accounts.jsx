@@ -10,11 +10,11 @@ const Accounts = () => {
 
     useEffect(() => {
         async function getAccounts() {
-            const response = await fetch(`${apiUrl}/api/accounts/${userId}`);
-            const data = await response.json();
+			const response = await fetch(`${apiUrl}/api/accounts/${userId}`);
+			const data = await response.json();
 
-            setAccountData(data);
-        }
+			setAccountData(data);
+		}
 
         getAccounts();
     }, []);
